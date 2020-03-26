@@ -1,4 +1,6 @@
-const chalk = require('chalk');
+'use strict';
+
+const chalk = require(`chalk`);
 
 const descriptions = {
   '--version': {
@@ -14,15 +16,17 @@ const descriptions = {
 };
 
 module.exports = {
-  name: '--help',
-  alias: '-h',
+  name: `--help`,
+  alias: `-h`,
   run() {
     for (let key in descriptions) {
-      const description = descriptions[key];
-      const command = chalk.cyan(key);
-      const option = `${chalk.yellow(description.option || '')}`;
-      const info = description.info;
-      console.info(`${command} ${option} — ${info}`);
+      if (descriptions.hasOwnProperty(key)) {
+        const description = descriptions[key];
+        const command = chalk.cyan(key);
+        const option = chalk.yellow(description.option || ``);
+        const info = description.info;
+        console.info(`${command} ${option} — ${info}`);
+      }
     }
   }
 };

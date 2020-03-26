@@ -1,6 +1,6 @@
 'use strict';
 
-const packageJson = require('../../../package');
+const packageJson = require(`../../../package`);
 
 module.exports = {
   name: `--version`,
