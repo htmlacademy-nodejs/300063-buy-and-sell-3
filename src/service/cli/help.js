@@ -4,13 +4,13 @@ const chalk = require(`chalk`);
 
 const descriptions = {
   '--version': {
-    info: `получение информации о версии программы. Команда выводит версию приложения. Версия приложения хранится в package.json. Пример вывода версии: 1.0.0.`,
+    info: `версия программы`,
   },
   '--help': {
-    info: `выводит информацию о доступных командах приложения, а также вспомогательную информацию.`,
+    info: `информация о доступных командах приложения`,
   },
   '--generate': {
-    info: `формирует массив с тестовыми объявлениями в количестве count и сохраняет их в файл mocks.json в корневую директорию проекта. Элемент массива — объект с фиксированным набором полей.`,
+    info: `формирует массив с тестовыми объявлениями в количестве count и сохраняет их в файл mocks.json в корневую директорию проекта`,
     option: `<count>`
   },
 };
@@ -19,13 +19,12 @@ module.exports = {
   name: `--help`,
   alias: `-h`,
   run() {
-    for (let key in descriptions) {
-      if (descriptions.hasOwnProperty(key)) {
-        const description = descriptions[key];
-        const command = chalk.cyan(key);
-        const option = chalk.yellow(description.option || ``);
+    for (let command in descriptions) {
+      if (descriptions.hasOwnProperty(command)) {
+        const description = descriptions[command];
+        const option = description.option || ``;
         const info = description.info;
-        console.info(`${command} ${option} — ${info}`);
+        console.info(chalk.grey(`${command} ${option} — ${info}`));
       }
     }
   }
