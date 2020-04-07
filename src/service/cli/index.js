@@ -3,6 +3,8 @@
 const generate = require(`./generate`);
 const help = require(`./help`);
 const version = require(`./version`);
+const server = require(`./server`);
+
 
 const Cli = {
   [generate.name]: generate,
@@ -11,7 +13,8 @@ const Cli = {
   [help.alias]: help,
   [version.name]: version,
   [version.alias]: version,
-
+  [server.name]: server,
+  [server.alias]: server,
 };
 
 module.exports = {
