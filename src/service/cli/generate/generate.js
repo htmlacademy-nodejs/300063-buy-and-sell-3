@@ -41,11 +41,10 @@ module.exports = {
     const titles = await readContent(params.FILE_TITLES_PATH);
     const sentences = await readContent(params.FILE_SENTENCES_PATH);
     const categories = await readContent(params.FILE_CATEGORIES_PATH);
-    console.log(categories);
     const content = JSON.stringify(generateOffers(countOffer, titles, sentences, categories));
     try {
       await fs.writeFile(params.FILE_NAME, content);
-      console.log(chalk.green(`Operation success. File created.`));
+      console.info(chalk.green(`Operation success. File created.`));
     } catch (err) {
       console.error(chalk.red(`Can't write data to file...`));
       process.exit(ExitCode.ERROR);
