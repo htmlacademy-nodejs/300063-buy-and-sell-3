@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  include partials/category
+  - let params= newTicketListParams
+  include partials/ticket-list
+  - params= popularTicketListParams
+  include partials/ticket-list
+

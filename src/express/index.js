@@ -1,11 +1,15 @@
+const path = require(`path`);
 const express = require(`express`);
 
+const params = require(`./params`);
 const mainRouter = require('./routes');
 
 const app = express();
-app.use(`/`, mainRouter);
+app.use(express.static(path.resolve(__dirname, params.PUBLIC_DIR)));
+app.set(`views`, path.resolve(__dirname, `templates`));
+app.set(`view engine`, `pug`);
 
-const DEFAULT_PORT = 8080;
-app.listen(DEFAULT_PORT);
+app.use(`/`, mainRouter);
+app.listen(params.DEFAULT_PORT);
 
 
