@@ -4,9 +4,10 @@
   "FILE_TITLES_PATH":  "./data/titles.txt",
   "FILE_SENTENCES_PATH":  "./data/sentences.txt",
   "FILE_CATEGORIES_PATH":  "./data/categories.txt",
+  "MAX_NUMBER_WITH_ZERO": 9,
   "OfferType": {
-    "OFFER": "offer",
-    "SALE": "sale"
+    "OFFER": "Куплю",
+    "SALE": "Продам"
   },
   "SumRestrict": {
     "MIN": 1000,

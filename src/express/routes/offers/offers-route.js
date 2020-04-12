@@ -1,3 +1,5 @@
+'use strict';
+
 const {Router} = require(`express`);
 
 const addRouter = require(`./add/add-routes`);

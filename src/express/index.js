@@ -1,8 +1,10 @@
+'use strict';
+
 const path = require(`path`);
 const express = require(`express`);
 
 const params = require(`./params`);
-const mainRouter = require('./routes');
+const mainRouter = require(`./routes`);
 
 const app = express();
 app.use(express.static(path.resolve(__dirname, params.PUBLIC_DIR)));

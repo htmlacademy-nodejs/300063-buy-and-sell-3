@@ -8,7 +8,7 @@ const {ExitCode} = require(`../../constants`);
 const {getRandomInt, shuffle} = require(`../../utils`);
 const params = require(`./params`);
 
-const getPictureFileName = (number) => number > 9 ? `item${number}.jpg` : `item0${number}.jpg`;
+const getPictureFileName = (number) => number > params.MAX_NUMBER_WITH_ZERO ? `item${number}.jpg` : `item0${number}.jpg`;
 
 const generateOffers = (count, titles, sentences, categories) => (
   Array(count).fill({}).map(() => ({
