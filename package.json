@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node ./src/service/service.js",
     "start.dev": "nodemon ./src/service/service.js --server",
+    "start-from-server": "node ./src/express/index.js",
+    "start-from-server.dev": "nodemon ./src/express/index.js",
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/"
   },
@@ -25,5 +27,7 @@
     "eslint-config-htmlacademy": "0.5.2",
     "nodemon": "2.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "4.17.1"
+  }
 }
