@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  include partials/category
+  include common/category
   - let params= newTicketListParams
-  include partials/ticket-list
+  include common/ticket-list
   - params= popularTicketListParams
-  include partials/ticket-list
+  include common/ticket-list
 
