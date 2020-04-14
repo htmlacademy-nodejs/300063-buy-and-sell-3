@@ -3,6 +3,8 @@
 const {Router} = require(`express`);
 
 const mock = require(`../../../mock`);
+const {adaptData} = require(`../utils`);
+
 const offersRouter = require(`./offers`);
 const registerRouter = require(`./register`);
 const loginRouter = require(`./login`);
@@ -12,15 +14,7 @@ const myRouter = require(`./my`);
 const mainRoute = new Router();
 
 mainRoute.get(`/`, (req, res) => {
-  const ticketList = [...mock].map((ticket) => ({
-    ...ticket,
-    type: ticket.type.toUpperCase(),
-    picture: {
-      base: `img/${ticket.picture}`,
-      retina: `img/${ticket.picture.replace(`.`, `@2x.`)} 2x`,
-    },
-    category: ticket.categoryList.map((category) => category.toUpperCase()).join(`, `),
-  }));
+  const ticketList = adaptData(mock);
   const pageContent = {
     title: `Main Page`,
     header: `Шаблонизатор в действии`,

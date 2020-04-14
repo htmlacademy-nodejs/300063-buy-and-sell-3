@@ -13,6 +13,9 @@ offersRouter.use(`/add`, addRouter);
 offersRouter.use(`/category`, categoryRouter);
 offersRouter.use(`/edit`, editRouter);
 
-offersRouter.get(`/:id`, (req, res) => res.send(`/offers/:id`));
+
+offersRouter.get(`/:id`, (req, res) => res.render(`offers/id`, {
+    isAuthorized: false,
+}));
 
 module.exports = offersRouter;
