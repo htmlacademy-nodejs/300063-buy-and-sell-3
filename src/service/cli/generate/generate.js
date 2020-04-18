@@ -8,7 +8,7 @@ const {ExitCode} = require(`../../constants`);
 const {getRandomInt, shuffle} = require(`../../utils`);
 const params = require(`./params`);
 
-const getPictureFileName = (number) => `item${number}.jpg`;
+const getPictureFileName = (number) => number > params.MAX_NUMBER_WITH_ZERO ? `item${number}.jpg` : `item0${number}.jpg`;
 
 const generateOffers = (count, titles, sentences, categories) => (
   Array(count).fill({}).map(() => ({
@@ -17,7 +17,7 @@ const generateOffers = (count, titles, sentences, categories) => (
     description: shuffle(sentences).slice(1, 5).join(` `),
     sum: getRandomInt(params.SumRestrict.MIN, params.SumRestrict.MAX),
     picture: getPictureFileName(getRandomInt(params.PictureRestrict.MIN, params.PictureRestrict.MAX)),
-    category: [categories[getRandomInt(0, categories.length - 1)]],
+    categoryList: [categories[getRandomInt(0, categories.length - 1)]],
   }))
 );
 

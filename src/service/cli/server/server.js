@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require(`fs`).promises;
 const http = require(`http`);
 const chalk = require(`chalk`);
@@ -18,7 +20,7 @@ const sendResponse = (res, statusCode, message) => {
     'Content-Type': `text/html; charset=UTF-8`,
   });
   res.end(template);
-}
+};
 
 const onClientConnect = async (req, res) => {
   const notFoundMessageText = `Not found`;
@@ -28,7 +30,7 @@ const onClientConnect = async (req, res) => {
       try {
         const fileContent = await fs.readFile(params.FILENAME);
         const mocks = JSON.parse(fileContent);
-        const message = mocks.map((post) => `<li>${post.title}</li>`).join('');
+        const message = mocks.map((post) => `<li>${post.title}</li>`).join(``);
         sendResponse(res, HttpCode.OK, `<ul>${message}</ul>`);
       } catch (err) {
         sendResponse(res, HttpCode.NOT_FOUND, notFoundMessageText);
@@ -55,7 +57,6 @@ module.exports = {
           return console.error(`Ошибка при создании сервера`, error);
         }
         return console.info(chalk.green(`Ожидаю соединений на ${port} порт`));
-      })
-
+      });
   }
 };

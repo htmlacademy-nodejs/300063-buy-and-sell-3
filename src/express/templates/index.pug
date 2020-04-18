@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  include common/category
+  - let params= newTicketListParams
+  include common/ticket-list
+  - params= popularTicketListParams
+  include common/ticket-list
+
