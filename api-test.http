@@ -1,0 +1,27 @@
+### Валидный запрос на создание offer
+POST http://localhost:3000/api/offers
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "type": "Куплю",
+  "title": "Заголовок",
+  "description": "Описание",
+  "sum": 40000,
+  "picture": "Картинка",
+  "categoryList": ["Категория 1", "Категория 2", "Категория 3"]
+}
+
+
+### Невалидный запрос на создание offer
+POST http://localhost:3000/api/offers
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "type": "Куплю",
+  "title": "Заголовок",
+  "description": "Описание"
+}
+
+###
