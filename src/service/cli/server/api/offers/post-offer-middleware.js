@@ -1,6 +1,7 @@
 'use strict';
 
 const HttpCode = require(`../../http-codes`);
+const {getValidationFieldMessage} = require(`../../common`);
 
 const requiredOfferFields = [`type`, `title`, `description`, `sum`, `picture`, `categoryList`];
 
@@ -13,10 +14,11 @@ module.exports = (req, res, next) => {
   if (invalidFields.length === 0) {
     return next();
   }
+
   res.status(HttpCode.BAD_REQUEST).send({
     status: `failed`,
     type: `validation`,
-    // message: `Validation error ${invalidFields.join(`, `)} is required`,
+    message: getValidationFieldMessage(invalidFields),
     fields: invalidFields,
   });
 };

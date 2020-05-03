@@ -21,7 +21,8 @@ Cache-Control: no-cache
 {
   "type": "Куплю",
   "title": "Заголовок",
-  "description": "Описание"
+  "description": "Описание",
+  "picture": "Картинка"
 }
 
 ###
