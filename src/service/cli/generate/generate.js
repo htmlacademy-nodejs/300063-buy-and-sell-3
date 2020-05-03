@@ -3,6 +3,7 @@
 const fs = require(`fs`).promises;
 
 const chalk = require(`chalk`);
+const {nanoid} = require(`nanoid`);
 
 const {ExitCode} = require(`../../constants`);
 const {getRandomInt, shuffle} = require(`../../utils`);
@@ -10,14 +11,16 @@ const params = require(`./params`);
 
 const getPictureFileName = (number) => number > params.MAX_NUMBER_WITH_ZERO ? `item${number}.jpg` : `item0${number}.jpg`;
 
-const generateOffers = (count, titles, sentences, categories) => (
+const generateOffers = (count, titles, sentences, categories, comments) => (
   Array(count).fill({}).map(() => ({
+    id: nanoid(),
     type: params.OfferType[Object.keys(params.OfferType)[Math.floor(Math.random() * Object.keys(params.OfferType).length)]],
     title: titles[getRandomInt(0, titles.length - 1)],
     description: shuffle(sentences).slice(1, 5).join(` `),
     sum: getRandomInt(params.SumRestrict.MIN, params.SumRestrict.MAX),
     picture: getPictureFileName(getRandomInt(params.PictureRestrict.MIN, params.PictureRestrict.MAX)),
     categoryList: [categories[getRandomInt(0, categories.length - 1)]],
+    comments: shuffle(comments).slice(0, getRandomInt(0, comments.length - 1)).join(` `),
   }))
 );
 
@@ -41,7 +44,8 @@ module.exports = {
     const titles = await readContent(params.FILE_TITLES_PATH);
     const sentences = await readContent(params.FILE_SENTENCES_PATH);
     const categories = await readContent(params.FILE_CATEGORIES_PATH);
-    const content = JSON.stringify(generateOffers(countOffer, titles, sentences, categories));
+    const comments = await readContent(params.FILE_COMMENTS_PATH);
+    const content = JSON.stringify(generateOffers(countOffer, titles, sentences, categories, comments));
     try {
       await fs.writeFile(params.FILE_NAME, content);
       console.info(chalk.green(`Operation success. File created.`));

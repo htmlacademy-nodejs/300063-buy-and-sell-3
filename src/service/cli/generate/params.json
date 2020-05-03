@@ -4,6 +4,7 @@
   "FILE_TITLES_PATH":  "./data/titles.txt",
   "FILE_SENTENCES_PATH":  "./data/sentences.txt",
   "FILE_CATEGORIES_PATH":  "./data/categories.txt",
+  "FILE_COMMENTS_PATH": "./data/comments.txt",
   "MAX_NUMBER_WITH_ZERO": 9,
   "OfferType": {
     "OFFER": "Куплю",
