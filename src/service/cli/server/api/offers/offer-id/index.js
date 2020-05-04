@@ -1,3 +1,8 @@
 'use strict';
 
-module.exports = require(`./offer-id-api`);
+const getOffer = require(`./get-offer`);
+
+module.exports = {
+  getOffer,
+
+};
