@@ -2,11 +2,11 @@
 
 const {Router} = require(`express`);
 
-const searchApi = new Router();
+const apiSearch = new Router();
 
-searchApi.get(`/`, (req, res) => {
+apiSearch.get(`/`, (req, res) => {
     //req.query.title;
     res.send(`GET /api/search?title=${req.query.title}`);
 });
 
-module.exports = searchApi;
+module.exports = apiSearch;

@@ -1,7 +1,7 @@
 'use strict';
 
-const HttpCode = require(`../../http-codes`);
-const {getValidationFieldMessage} = require(`../../common`);
+const HttpCode = require(`../../../http-codes`);
+const {getValidationFieldMessage} = require(`../../../common`);
 
 const requiredOfferFields = [`type`, `title`, `description`, `sum`, `picture`, `categoryList`];
 

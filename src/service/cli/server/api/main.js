@@ -1,9 +1,10 @@
 'use strict';
 
 const {Router} = require(`express`);
-const categoriesApi = require(`./categories`);
-const offersApi = require(`./offers`);
-const searchApi = require(`./search`);
+
+const categoriesApi = require(`./api-categories`);
+const offersApi = require(`./api-offers`);
+const searchApi = require(`./api-search`);
 
 const mainApi = new Router();
 
