@@ -25,4 +25,8 @@ Cache-Control: no-cache
   "picture": "Картинка"
 }
 
+### Получение offer по ID
+GET http://localhost:3000/api/offers/pjKE6yKs7gAdfRu8jrJIv
+Content-Type: application/json
+
 ###
