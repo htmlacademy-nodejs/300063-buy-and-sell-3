@@ -40,7 +40,7 @@ module.exports = ({res, req, method, requiredPropertyList, regExpUrl}) => {
     return false;
   }
 
-  const requiredProperties = requiredPropertyList.filter(item => !propertyList.includes(item));
+  const requiredProperties = requiredPropertyList.filter(item => !req.body[item]);
   if (requiredProperties.length !== 0) {
     res.status(HttpCode.BAD_REQUEST).send({
       status: `failed`,
