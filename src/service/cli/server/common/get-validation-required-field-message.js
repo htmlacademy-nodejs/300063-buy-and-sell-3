@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (fields) => {
   const invalidFields = [...fields];
   let message = `Validation error ${invalidFields[0]} is required field`;

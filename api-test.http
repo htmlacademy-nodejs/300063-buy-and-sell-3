@@ -29,4 +29,37 @@ Cache-Control: no-cache
 GET http://localhost:3000/api/offers/pjKE6yKs7gAdfRu8jrJIv
 Content-Type: application/json
 
+### редактирование предложения
+PUT http://localhost:3000/api/offers/ttk0HMqbQs1ruKd8-oqhd
+Content-Type: application/json
+
+{
+  "type": "buy",
+  "title": "title",
+  "description": "description",
+  "sum": 5000,
+  "picture": "picture",
+  "categoryList": [
+    "Категория 4"
+  ]
+}
+
+### для проверки на ошибку при редактировании предложения
+PUT http://localhost:3000/api/offers/ttk0HMqbQs1ruKd8-oqhd
+Content-Type: application/json
+
+{
+  "_type": "buy",
+  "name": "title",
+  "description": "description",
+  "sum": 10000,
+  "picture": "picture",
+  "categoryList": [
+    "Категория 4"
+  ]
+}
+
+### Удаление предложения
+DELETE http://localhost:3000/api/offers/asZrd-K3uR2I41cn9KQQH
+
 ###

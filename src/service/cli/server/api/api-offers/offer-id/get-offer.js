@@ -5,7 +5,6 @@ const {getJSONFromFile} = require(`../../../common`);
 const HttpCode = require(`../../../http-codes`);
 
 module.exports = async (req, res) => {
-  console.log(req.params);
   const offers = await getJSONFromFile(params.FILENAME, res);
   const offer = offers.find(item => item.id === req.params.offerId);
 

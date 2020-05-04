@@ -1,9 +1,12 @@
 const getJSONFromFile = require(`./get-json-from-file`);
-const getValidationFieldMessage = require(`./get-validation-field-message`);
+const getValidationRequiredFieldMessage = require(`./get-validation-required-field-message`);
+const getValidationExtraFieldMessage = require(`./get-validation-extra-field-message`);
+
 const saveObjectToJSONFile = require(`./save-object-to-json-file`);
 
 module.exports = {
   getJSONFromFile,
-  getValidationFieldMessage,
+  getValidationRequiredFieldMessage,
+  getValidationExtraFieldMessage,
   saveObjectToJSONFile,
 };
