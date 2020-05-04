@@ -1,9 +1,7 @@
 'use strict';
 
-const postOfferMiddleware = require(`./post-offer-middleware`);
-const putOfferIdMiddleware = require(`./put-offer-id-middleware`);
+const offerMiddleware = require(`./offer-middleware`);
 
 module.exports = {
-  postOfferMiddleware,
-  putOfferIdMiddleware,
+  offerMiddleware
 };

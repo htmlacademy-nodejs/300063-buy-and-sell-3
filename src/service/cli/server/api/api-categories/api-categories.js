@@ -2,8 +2,10 @@
 
 const {Router} = require(`express`);
 
+const getCategories = require(`./get-categories`);
+
 const apiCategories = new Router();
 
-apiCategories.get(`/`, (req, res) => res.send(`GET /api/categories`));
+apiCategories.get(`/`, getCategories);
 
 module.exports = apiCategories;

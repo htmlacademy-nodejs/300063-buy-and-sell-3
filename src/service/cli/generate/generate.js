@@ -6,10 +6,21 @@ const chalk = require(`chalk`);
 const {nanoid} = require(`nanoid`);
 
 const {ExitCode} = require(`../../constants`);
-const {getRandomInt, shuffle} = require(`../../utils`);
+const {getRandomInt, shuffle, readContent} = require(`../../utils`);
 const params = require(`./params`);
 
 const getPictureFileName = (number) => number > params.MAX_NUMBER_WITH_ZERO ? `item${number}.jpg` : `item0${number}.jpg`;
+
+const getComments = (textComments) => {
+  const emptyList = Array(getRandomInt(0, 5)).fill({});
+  return emptyList.map(item => {
+    item = {
+      id: nanoid(),
+      text: shuffle(textComments).slice(0, getRandomInt(0, textComments.length - 1)).join(' '),
+    };
+    return item;
+  });
+};
 
 const generateOffers = (count, titles, sentences, categories, comments) => (
   Array(count).fill({}).map(() => ({
@@ -20,19 +31,9 @@ const generateOffers = (count, titles, sentences, categories, comments) => (
     sum: getRandomInt(params.SumRestrict.MIN, params.SumRestrict.MAX),
     picture: getPictureFileName(getRandomInt(params.PictureRestrict.MIN, params.PictureRestrict.MAX)),
     categoryList: [categories[getRandomInt(0, categories.length - 1)]],
-    comments: shuffle(comments).slice(0, getRandomInt(0, comments.length - 1)).join(` `),
+    comments: getComments(comments),
   }))
 );
-
-const readContent = async (filePath) => {
-  try {
-    const content = await fs.readFile(filePath, `utf8`);
-    return content.trim().split(`\n`);
-  } catch (err) {
-    console.error(chalk.red(err));
-    return [];
-  }
-};
 
 module.exports = {
   name: `--generate`,

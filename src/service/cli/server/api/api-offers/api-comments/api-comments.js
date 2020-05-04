@@ -2,10 +2,15 @@
 
 const {Router} = require(`express`);
 
-const apiComments = new Router();
+const {deleteComments, getComments, postComments} = require(`./comments`);
+const {postOfferCommentMiddleWare} = require(`./middleware`);
 
-apiComments.get(`/`, (req, res) => res.send(`GET /api/offers/:offerID/comments`));
-apiComments.post(`/`, (req, res) => res.send(`POST /api/offers/:offerID/comments`));
-apiComments.delete(`/:commentId`, (req, res) => res.send(`DELETE /api/offers/:offerID/comments/:commentId`));
+const apiComments = new Router({mergeParams: true});
+
+apiComments.use(postOfferCommentMiddleWare);
+
+apiComments.get(`/`, getComments);
+apiComments.post(`/`, postComments);
+apiComments.delete(`/:commentId`, deleteComments);
 
 module.exports = apiComments;

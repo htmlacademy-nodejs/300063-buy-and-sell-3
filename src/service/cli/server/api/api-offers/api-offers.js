@@ -2,7 +2,7 @@
 
 const {Router} = require(`express`);
 
-const {postOfferMiddleware, putOfferIdMiddleware} = require(`./middleware`);
+const {offerMiddleware} = require(`./middleware`);
 const commentsApi = require(`./api-comments`);
 
 const {getResponseOffers, postResponseOffers} = require(`./offers`);
@@ -10,11 +10,10 @@ const {deleteOffer, getOffer, putOffer} = require(`./offer-id`);
 
 const apiOffers = new Router();
 
-apiOffers.use(postOfferMiddleware);
-apiOffers.use(putOfferIdMiddleware);
+apiOffers.use(offerMiddleware);
 
-apiOffers.get(`/`, async (req, res) => await getResponseOffers(res));
-apiOffers.post(`/`, async (req, res) => await postResponseOffers(req, res));
+apiOffers.get(`/`, getResponseOffers);
+apiOffers.post(`/`, postResponseOffers);
 
 apiOffers.get(`/:offerId`, getOffer);
 apiOffers.put(`/:offerId`, putOffer);

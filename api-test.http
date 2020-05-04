@@ -13,24 +13,36 @@ Cache-Control: no-cache
 }
 
 
-### Невалидный запрос на создание offer
+### Невалидный запрос на создание offer (отсутствую толя)
+POST http://localhost:3000/api/offers
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+"type": "Куплю",
+"title": "Заголовок",
+"description": "Описание",
+"picture": "Картинка"
+}
+
+### Невалидный запрос на создание offer (невалидные имена полей)
 POST http://localhost:3000/api/offers
 Content-Type: application/json
 Cache-Control: no-cache
 
 {
   "type": "Куплю",
-  "title": "Заголовок",
+  "name": "Заголовок",
   "description": "Описание",
   "picture": "Картинка"
 }
 
 ### Получение offer по ID
-GET http://localhost:3000/api/offers/pjKE6yKs7gAdfRu8jrJIv
+GET http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
 Content-Type: application/json
 
 ### редактирование предложения
-PUT http://localhost:3000/api/offers/ttk0HMqbQs1ruKd8-oqhd
+PUT http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
 Content-Type: application/json
 
 {
@@ -45,7 +57,7 @@ Content-Type: application/json
 }
 
 ### для проверки на ошибку при редактировании предложения
-PUT http://localhost:3000/api/offers/ttk0HMqbQs1ruKd8-oqhd
+PUT http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
 Content-Type: application/json
 
 {
@@ -60,6 +72,35 @@ Content-Type: application/json
 }
 
 ### Удаление предложения
-DELETE http://localhost:3000/api/offers/asZrd-K3uR2I41cn9KQQH
+DELETE http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
+
+### Получить список категорий предложений
+GET http://localhost:3000/api/categories
+Content-Type: application/json
+
+### Добавить новый комментарий
+POST http://localhost:3000/api/offers/-UrVXocGxPurlmF2rpKaS/comments
+Content-Type: application/json
+
+{
+  "text": "Новый комментарий!!!"
+}
+
+### Отправка несуществующего поля
+POST http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo/comments
+Content-Type: application/json
+
+{
+  "texxt": "Новый комментарий!!!"
+}
+
+### отправка с отсутствующим комментарием
+POST http://localhost:3000/api/offers/-UrVXocGxPurlmF2rpKaS/comments
+Content-Type: application/json
+
+{}
+
+### Удаление комментария для предложения
+DELETE http://localhost:3000/api/offers/-UrVXocGxPurlmF2rpKaS/comments/UY0TKigbygfFETWmWeFdo
 
 ###
