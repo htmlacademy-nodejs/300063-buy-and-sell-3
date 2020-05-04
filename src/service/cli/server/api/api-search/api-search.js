@@ -1,12 +1,10 @@
 'use strict';
 
 const {Router} = require(`express`);
+const getSearch = require(`./get-search`);
 
 const apiSearch = new Router();
 
-apiSearch.get(`/`, (req, res) => {
-    //req.query.title;
-    res.send(`GET /api/search?title=${req.query.title}`);
-});
+apiSearch.get(`/`, getSearch);
 
 module.exports = apiSearch;

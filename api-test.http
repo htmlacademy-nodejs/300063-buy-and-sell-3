@@ -104,3 +104,8 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/offers/-UrVXocGxPurlmF2rpKaS/comments/UY0TKigbygfFETWmWeFdo
 
 ###
+
+### Фильтрация предложений по полю title
+GET http://localhost:3000/api/search?title=Sony
+
+###

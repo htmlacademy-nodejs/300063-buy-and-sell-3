@@ -3,11 +3,11 @@
 const {Router} = require(`express`);
 
 const {deleteComments, getComments, postComments} = require(`./comments`);
-const {postOfferCommentMiddleWare} = require(`./middleware`);
+const {postOfferCommentMiddleware} = require(`./middleware`);
 
 const apiComments = new Router({mergeParams: true});
 
-apiComments.use(postOfferCommentMiddleWare);
+apiComments.use(postOfferCommentMiddleware);
 
 apiComments.get(`/`, getComments);
 apiComments.post(`/`, postComments);
