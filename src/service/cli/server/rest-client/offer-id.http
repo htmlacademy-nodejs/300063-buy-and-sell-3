@@ -1,0 +1,38 @@
+### Получение offer по ID
+GET http://localhost:3000/api/offers/tjMYTRSIJT8ZG0pF_jS0K
+Content-Type: application/json
+
+### редактирование предложения
+PUT http://localhost:3000/api/offers/tjMYTRSIJT8ZG0pF_jS0K
+Content-Type: application/json
+
+{
+  "type": "buy",
+  "title": "title",
+  "description": "description",
+  "sum": 5000,
+  "picture": "picture",
+  "categoryList": [
+    "Категория 4"
+  ]
+}
+
+### для проверки на ошибку при редактировании предложения
+PUT http://localhost:3000/api/offers/tjMYTRSIJT8ZG0pF_jS0K
+Content-Type: application/json
+
+{
+  "_type": "buy",
+  "name": "title",
+  "description": "description",
+  "sum": 10000,
+  "picture": "picture",
+  "categoryList": [
+    "Категория 4"
+  ]
+}
+
+### Удаление предложения
+DELETE http://localhost:3000/api/offers/tjMYTRSIJT8ZG0pF_jS0K
+
+###

@@ -1,4 +1,4 @@
-const {validationPropertyList} = require(`../../../../common`);
+const {validationPropertyList} = require(`../../../../../common`);
 
 module.exports = (req, res, next) => {
   const isValid = validationPropertyList({

@@ -1,15 +1,23 @@
 'use strict';
 
-const {Router} = require(`express`);
+const express = require(`express`);
+
+const HttpCode = require(`../http-codes`);
 
 const categoriesApi = require(`./api-categories`);
 const offersApi = require(`./api-offers`);
 const searchApi = require(`./api-search`);
 
-const mainApi = new Router();
+const server = express();
 
-mainApi.use(`/categories`, categoriesApi);
-mainApi.use(`/offers`, offersApi);
-mainApi.use(`/search`, searchApi);
+server.use(express.json());
 
-module.exports = mainApi;
+server.use(`/api/categories`, categoriesApi);
+server.use(`/api/offers`, offersApi);
+server.use(`/api/search`, searchApi);
+
+server.use((req, res) => res
+  .status(HttpCode.NOT_FOUND)
+  .send(`Not found`));
+
+module.exports = server;

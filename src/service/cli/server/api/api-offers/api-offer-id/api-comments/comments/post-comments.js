@@ -2,9 +2,9 @@
 
 const {nanoid} = require(`nanoid`);
 
-const {getJSONFromFile, saveObjectToJSONFile} = require(`../../../../common`);
-const HttpCode = require(`../../../../http-codes`);
-const params = require(`../../../../params`);
+const {getJSONFromFile, saveObjectToJSONFile} = require(`../../../../../common`);
+const HttpCode = require(`../../../../../http-codes`);
+const params = require(`../../../../../params`);
 
 const createNewComment = (req) => {
   return {

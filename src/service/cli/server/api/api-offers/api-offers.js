@@ -3,10 +3,10 @@
 const {Router} = require(`express`);
 
 const {offerMiddleware} = require(`./middleware`);
-const commentsApi = require(`./api-comments`);
 
 const {getResponseOffers, postResponseOffers} = require(`./offers`);
-const {deleteOffer, getOffer, putOffer} = require(`./offer-id`);
+const apiOfferId = require(`./api-offer-id`);
+
 
 const apiOffers = new Router();
 
@@ -14,10 +14,7 @@ apiOffers.use(offerMiddleware);
 
 apiOffers.get(`/`, getResponseOffers);
 apiOffers.post(`/`, postResponseOffers);
+apiOffers.use(`/:offerId`, apiOfferId);
 
-apiOffers.get(`/:offerId`, getOffer);
-apiOffers.put(`/:offerId`, putOffer);
-apiOffers.delete(`/:offerId`, deleteOffer);
-apiOffers.use(`/:offerId/comments`, commentsApi);
 
 module.exports = apiOffers;

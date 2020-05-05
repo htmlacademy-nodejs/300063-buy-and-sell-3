@@ -20,5 +20,5 @@ module.exports = async (req, res) => {
   const offers = await getJSONFromFile(params.FILENAME, res);
   offers.push(newOffer);
   await saveObjectToJSONFile(params.FILENAME, offers, res);
-  res.status(HttpCode.CREATED).send();
+  res.status(HttpCode.CREATED).send(newOffer);
 };

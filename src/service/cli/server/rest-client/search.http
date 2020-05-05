@@ -1,0 +1,4 @@
+### Фильтрация предложений по полю title
+GET http://localhost:3000/api/search?title=Sony
+
+###

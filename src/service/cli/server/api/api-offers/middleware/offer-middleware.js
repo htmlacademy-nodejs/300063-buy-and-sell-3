@@ -1,7 +1,7 @@
 'use strict';
 
 const {validationPropertyList} = require(`../../../common`);
-const {offerPropertyList} = require(`./params`);
+const {offerPropertyList} = require(`../params`);
 
 const middlewareParamList = [
   {
