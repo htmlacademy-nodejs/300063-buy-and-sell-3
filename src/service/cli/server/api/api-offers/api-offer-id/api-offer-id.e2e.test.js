@@ -1,16 +1,7 @@
 const request = require(`supertest`);
 const server = require(`../../main`);
 const HttpCode = require(`../../../http-codes`);
-const {offerPropertyList} = require(`../params`);
-
-const baseOfferParams = {
-  type: `Куплю`,
-  title: `Заголовок`,
-  description: `Описание`,
-  sum: 40000,
-  picture: `Картинка`,
-  categoryList: [`Категория 1`, `Категория 2`, `Категория 3`],
-};
+const {offerPropertyList, baseOfferParams} = require(`../params`);
 
 describe(`Offer id API end-points`, () => {
   describe(`When GET offer id`, () => {

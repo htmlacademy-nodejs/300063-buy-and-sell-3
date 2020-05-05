@@ -22,5 +22,5 @@ module.exports = async (req, res) => {
   }
   offer.comments.push(newComment);
   await saveObjectToJSONFile(params.FILENAME, offers);
-  res.status(HttpCode.OK).send();
+  res.status(HttpCode.CREATED).send(newComment);
 };
