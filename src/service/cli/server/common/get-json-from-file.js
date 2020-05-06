@@ -2,13 +2,11 @@
 
 const fs = require(`fs`).promises;
 
-const HttpCode = require(`../http-codes`);
-
-module.exports = async (fileName, res) => {
+module.exports = async (fileName) => {
   try {
-    const fileContent = await fs.readFile(fileName, res);
+    const fileContent = await fs.readFile(fileName);
     return JSON.parse(fileContent);
   } catch (error) {
-    res.status(HttpCode.INTERNAL_SERVER_ERROR).send();
+    console.error(`Can't read file ${fileName}`, error);
   }
 };

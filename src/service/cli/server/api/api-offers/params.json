@@ -1,12 +1,4 @@
 {
-  "offerPropertyList": [
-    "type",
-    "title",
-    "description",
-    "sum",
-    "picture",
-    "categoryList"
-  ],
   "baseOfferParams": {
     "type": "Куплю",
     "title": "Заголовок",

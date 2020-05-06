@@ -1,9 +1,9 @@
 ### Получение offer по ID
-GET http://localhost:3000/api/offers/tjMYTRSIJT8ZG0pF_jS0K
+GET http://localhost:3000/api/offers/wKxDZZoEZaMw709vNjdGR
 Content-Type: application/json
 
 ### редактирование предложения
-PUT http://localhost:3000/api/offers/tjMYTRSIJT8ZG0pF_jS0K
+PUT http://localhost:3000/api/offers/wKxDZZoEZaMw709vNjdGR
 Content-Type: application/json
 
 {
@@ -33,6 +33,6 @@ Content-Type: application/json
 }
 
 ### Удаление предложения
-DELETE http://localhost:3000/api/offers/tjMYTRSIJT8ZG0pF_jS0K
+DELETE http://localhost:3000/api/offers/wKxDZZoEZaMw709vNjdGR
 
 ###

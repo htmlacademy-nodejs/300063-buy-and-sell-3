@@ -1,10 +1,9 @@
 'use strict';
 
-const {getJSONFromFile} = require(`../../../common`);
-const HttpCode = require(`../../../http-codes`);
-const params = require(`../../../params`);
+const {OfferAdapter} = require(`../../../adapters`);
 
-module.exports = async (req, res) => {
-  const offers = await getJSONFromFile(params.FILENAME, res);
-  res.status(HttpCode.OK).send(offers);
+
+module.exports = (req, res) => {
+  const offerList = OfferAdapter.getList();
+  res.status(offerList.statusCode).send(offerList.content);
 };

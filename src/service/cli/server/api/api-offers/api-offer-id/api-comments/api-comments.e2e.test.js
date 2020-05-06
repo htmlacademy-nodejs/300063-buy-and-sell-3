@@ -1,8 +1,11 @@
+'use strict';
+
 const request = require(`supertest`);
 
 const {baseOfferParams} = require(`../../params`);
 const server = require(`../../../main`);
 const HttpCode = require(`../../../../http-codes`);
+
 
 describe(`Offer comments API end-points`, () => {
   let testOffer;
@@ -57,13 +60,13 @@ describe(`Offer comments API end-points`, () => {
     expect(deleteRes.statusCode).toBe(HttpCode.NO_CONTENT);
   });
 
-  test(`When DELETE offer comment status code should be ${HttpCode.NOT_FOUND} if not exist comment delete`, async () => {
+  test(`When DELETE offer comment status code should be ${HttpCode.BAD_REQUEST} if not exist comment delete`, async () => {
     const offer = {...testOffer};
     const postRes = await request(server).post(`/api/offers/${offer.id}/comments`).send({
       text: `Comment text`,
     });
     await request(server).delete(`/api/offers/${offer.id}/comments/${postRes.body.id}`);
     const deleteRes = await request(server).delete(`/api/offers/${offer.id}/comments/${postRes.body.id}`);
-    expect(deleteRes.statusCode).toBe(HttpCode.NOT_FOUND);
+    expect(deleteRes.statusCode).toBe(HttpCode.BAD_REQUEST);
   });
 });

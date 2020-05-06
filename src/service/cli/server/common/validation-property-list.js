@@ -1,7 +1,5 @@
 'use strict';
 
-const HttpCode = require(`../http-codes`);
-
 const getValidationExtraFieldMessage = (fields) => {
   const extraFields = [...fields];
   let message = `Validation error ${extraFields[0]} is extra field`;
@@ -22,33 +20,36 @@ const getValidationRequiredFieldMessage = (fields) => {
   return message;
 };
 
-module.exports = ({res, req, method, requiredPropertyList, regExpUrl}) => {
-  const isNotOfferComments = !req.originalUrl.match(regExpUrl);
-  if (req.method !== method || isNotOfferComments) {
-    return true;
-  }
-
-  const propertyList = Object.keys(req.body);
+module.exports = (requiredPropertyList, params) => {
+  const propertyList = Object.keys(params);
   const extraPropertyList = propertyList.filter(item => !requiredPropertyList.includes(item));
   if (extraPropertyList.length !== 0) {
-    res.status(HttpCode.BAD_REQUEST).send({
+    return {
       status: `failed`,
       type: `validation`,
-      message: getValidationExtraFieldMessage(extraPropertyList),
-      fields: extraPropertyList,
-    });
-    return false;
+      content: {
+        type: `validation`,
+        message: getValidationExtraFieldMessage(extraPropertyList),
+        fields: extraPropertyList,
+      },
+    };
   }
 
-  const requiredProperties = requiredPropertyList.filter(item => !req.body[item]);
+  const requiredProperties = requiredPropertyList.filter(item => !params[item]);
   if (requiredProperties.length !== 0) {
-    res.status(HttpCode.BAD_REQUEST).send({
+    return {
       status: `failed`,
-      type: `validation`,
-      message: getValidationRequiredFieldMessage(requiredProperties),
-      fields: requiredProperties,
-    });
-    return false;
+      content: {
+        type: `validation`,
+        message: getValidationRequiredFieldMessage(requiredProperties),
+        fields: requiredProperties,
+      },
+    };
   }
-  return true;
+  return {
+    status: `success`,
+    content: {
+      type: `validation`,
+    },
+  };
 };

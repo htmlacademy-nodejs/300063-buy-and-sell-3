@@ -10,6 +10,7 @@
     "start-from-server.dev": "nodemon ./src/express/index.js",
     "test": "npm run eslint",
     "test::rest": "jest ./src/service --verbose",
+    "test::rest.dev": "jest ./src/service --watchAll --verbose",
     "eslint": "eslint --ext .js src/"
   },
   "repository": {

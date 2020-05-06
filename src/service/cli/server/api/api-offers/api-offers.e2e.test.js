@@ -2,9 +2,19 @@
 
 const request = require(`supertest`);
 
-const {offerPropertyList, baseOfferParams} = require(`./params`);
+const {baseOfferParams} = require(`./params`);
 const server = require(`../main`);
 const HttpCode = require(`../../http-codes`);
+
+
+const offerPropertyList = [
+  `type`,
+  `title`,
+  `description`,
+  `sum`,
+  `picture`,
+  `categoryList`,
+];
 
 describe(`Offers API end-points`, () => {
   test(`When GET offers status code should be ${HttpCode.OK}`, async () => {

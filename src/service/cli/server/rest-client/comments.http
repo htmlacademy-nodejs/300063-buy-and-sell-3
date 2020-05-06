@@ -1,9 +1,9 @@
 ### Получить список комментариев для предложения
-GET http://localhost:3000/api/offers/mmF7AXbsl-c4CqsujE1xh/comments
+GET http://localhost:3000/api/offers/U7fBtKlBluanMvm6gn4Mg/comments
 Content-Type: application/json
 
 ### Добавить новый комментарий
-POST http://localhost:3000/api/offers/mmF7AXbsl-c4CqsujE1xh/comments
+POST http://localhost:3000/api/offers/U7fBtKlBluanMvm6gn4Mg/comments
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### Отправка несуществующего поля
-POST http://localhost:3000/api/offers/mmF7AXbsl-c4CqsujE1xh/comments
+POST http://localhost:3000/api/offers/U7fBtKlBluanMvm6gn4Mg/comments
 Content-Type: application/json
 
 {
@@ -19,12 +19,12 @@ Content-Type: application/json
 }
 
 ### отправка с отсутствующим комментарием
-POST http://localhost:3000/api/offers/mmF7AXbsl-c4CqsujE1xh/comments
+POST http://localhost:3000/api/offers/U7fBtKlBluanMvm6gn4Mg/comments
 Content-Type: application/json
 
 {}
 
 ### Удаление комментария для предложения
-DELETE http://localhost:3000/api/offers/mmF7AXbsl-c4CqsujE1xh/comments/T2htg5HdSkPYjLsbsoPD-
+DELETE http://localhost:3000/api/offers/U7fBtKlBluanMvm6gn4Mg/comments/S-mzlZnIr25by5najZNdk
 
 ###

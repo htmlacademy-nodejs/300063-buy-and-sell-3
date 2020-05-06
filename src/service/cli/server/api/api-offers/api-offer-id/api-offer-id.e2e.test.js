@@ -1,7 +1,17 @@
 const request = require(`supertest`);
 const server = require(`../../main`);
 const HttpCode = require(`../../../http-codes`);
-const {offerPropertyList, baseOfferParams} = require(`../params`);
+const {baseOfferParams} = require(`../params`);
+
+
+const offerPropertyList = [
+  `type`,
+  `title`,
+  `description`,
+  `sum`,
+  `picture`,
+  `categoryList`,
+];
 
 describe(`Offer id API end-points`, () => {
   describe(`When GET offer id`, () => {
@@ -34,10 +44,6 @@ describe(`Offer id API end-points`, () => {
       testOffer = testOfferRes.body;
     });
 
-    afterEach(async () => {
-      await request(server).delete(`/api/offers/${testOffer.id}`);
-    });
-
     test(`status code should be ${HttpCode.OK}`, async () => {
       const currentOffer = {...testOffer};
       const res = await request(server).put(`/api/offers/${currentOffer.id}`).send({
@@ -45,6 +51,7 @@ describe(`Offer id API end-points`, () => {
         type: `Продам`,
       });
       expect(res.statusCode).toBe(HttpCode.OK);
+      await request(server).delete(`/api/offers/${currentOffer.id}`);
     });
 
     test.each([
@@ -79,11 +86,11 @@ describe(`Offer id API end-points`, () => {
       expect(deleteRes.statusCode).toBe(HttpCode.NO_CONTENT);
     });
 
-    test(`status code should be ${HttpCode.NOT_FOUND} if delete not exist offer`, async () => {
+    test(`status code should be ${HttpCode.BAD_REQUEST} if delete not exist offer`, async () => {
       const postRes = await request(server).post(`/api/offers`).send(baseOfferParams);
       await request(server).delete(`/api/offers/${postRes.body.id}`);
       const deleteRes = await request(server).delete(`/api/offers/${postRes.body.id}`);
-      expect(deleteRes.statusCode).toBe(HttpCode.NOT_FOUND);
+      expect(deleteRes.statusCode).toBe(HttpCode.BAD_REQUEST);
     });
   });
 });

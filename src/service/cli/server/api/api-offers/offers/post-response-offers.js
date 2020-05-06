@@ -1,24 +1,9 @@
 'use strict';
 
-const {nanoid} = require(`nanoid`);
-
-const params = require(`../../../params`);
-const HttpCode = require(`../../../http-codes`);
-const {getJSONFromFile, saveObjectToJSONFile} = require(`../../../common`);
+const {OfferAdapter} = require(`../../../adapters`);
 
 
-const createNewOffer = (offerParams) => {
-  return {
-    ...offerParams,
-    id: nanoid(),
-    comments: [],
-  };
-};
-
-module.exports = async (req, res) => {
-  const newOffer = createNewOffer(req.body);
-  const offers = await getJSONFromFile(params.FILENAME, res);
-  offers.push(newOffer);
-  await saveObjectToJSONFile(params.FILENAME, offers, res);
-  res.status(HttpCode.CREATED).send(newOffer);
+module.exports = (req, res) => {
+  const offer = OfferAdapter.addItem(req.body);
+  res.status(offer.statusCode).send(offer.content);
 };

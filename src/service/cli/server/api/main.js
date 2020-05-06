@@ -2,17 +2,17 @@
 
 const express = require(`express`);
 
-const HttpCode = require(`../http-codes`);
-
-const categoriesApi = require(`./api-categories`);
+const apiCategories = require(`./api-categories`);
 const offersApi = require(`./api-offers`);
 const searchApi = require(`./api-search`);
+const HttpCode = require(`../http-codes`);
+
 
 const server = express();
 
 server.use(express.json());
 
-server.use(`/api/categories`, categoriesApi);
+server.use(`/api/categories`, apiCategories);
 server.use(`/api/offers`, offersApi);
 server.use(`/api/search`, searchApi);
 

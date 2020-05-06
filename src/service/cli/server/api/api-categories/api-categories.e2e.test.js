@@ -2,10 +2,12 @@
 
 const request = require(`supertest`);
 const server = require(`../main`);
+const HttpCodes = require(`../../http-codes`);
+
 
 describe(`Categories API end-points`, () => {
-  test(`When GET categories status code should be 200`, async () => {
+  test(`When GET categories status code should be ${HttpCodes.OK}`, async () => {
     const res = await request(server).get(`/api/categories`);
-    expect(res.statusCode).toBe(200);
+    expect(res.statusCode).toBe(HttpCodes.OK);
   });
 });

@@ -5,6 +5,7 @@ const {Router} = require(`express`);
 const {deleteOffer, getOffer, putOffer} = require(`./offer-id`);
 const commentsApi = require(`./api-comments`);
 
+
 const apiOfferId = new Router({mergeParams: true});
 
 apiOfferId.get(`/`, getOffer);
