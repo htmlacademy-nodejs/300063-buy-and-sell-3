@@ -1,6 +1,6 @@
 'use strict';
 
-const HttpCode = require(`../http-codes`);
+const HttpCodes = require(`../common/http-codes`);
 
 
 const STATUS_LIST = {
@@ -12,7 +12,7 @@ class HttpResponse {
   ok(content) {
     return {
       status: STATUS_LIST.SUCCESS,
-      statusCode: HttpCode.OK,
+      statusCode: HttpCodes.OK,
       content,
     };
   }
@@ -20,7 +20,7 @@ class HttpResponse {
   notFound(content) {
     return {
       status: STATUS_LIST.FAILED,
-      statusCode: HttpCode.NOT_FOUND,
+      statusCode: HttpCodes.NOT_FOUND,
       content,
     };
   }
@@ -28,7 +28,7 @@ class HttpResponse {
   badRequest(content) {
     return {
       status: STATUS_LIST.FAILED,
-      statusCode: HttpCode.BAD_REQUEST,
+      statusCode: HttpCodes.BAD_REQUEST,
       content,
     };
   }
@@ -36,7 +36,7 @@ class HttpResponse {
   noContent(content) {
     return {
       status: STATUS_LIST.SUCCESS,
-      statusCode: HttpCode.NO_CONTENT,
+      statusCode: HttpCodes.NO_CONTENT,
       content,
     };
   }
@@ -44,7 +44,7 @@ class HttpResponse {
   created(content) {
     return {
       status: STATUS_LIST.SUCCESS,
-      statusCode: HttpCode.CREATED,
+      statusCode: HttpCodes.CREATED,
       content,
     };
   }

@@ -4,7 +4,7 @@ const request = require(`supertest`);
 
 const {baseOfferParams} = require(`../api-offers/params`);
 const server = require(`../main`);
-const HttpCode = require(`../../http-codes`);
+const HttpCode = require(`../../common/http-codes`);
 
 describe(`Search API end-points`, () => {
   let testOffer;

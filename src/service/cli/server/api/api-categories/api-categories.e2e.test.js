@@ -2,7 +2,7 @@
 
 const request = require(`supertest`);
 const server = require(`../main`);
-const HttpCodes = require(`../../http-codes`);
+const HttpCodes = require(`../../common/http-codes`);
 
 
 describe(`Categories API end-points`, () => {

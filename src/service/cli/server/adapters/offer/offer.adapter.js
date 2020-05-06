@@ -2,7 +2,7 @@
 
 const fs = require(`fs`);
 const {nanoid} = require(`nanoid`);
-const {FILENAME} = require(`../../params`);
+const {FILENAME} = require(`../../common/params`);
 const {HttpResponse, STATUS_LIST} = require(`../http-response`);
 const {validationPropertyList} = require(`../../common`);
 

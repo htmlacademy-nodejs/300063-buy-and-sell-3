@@ -5,7 +5,7 @@ const express = require(`express`);
 const apiCategories = require(`./api-categories`);
 const offersApi = require(`./api-offers`);
 const searchApi = require(`./api-search`);
-const HttpCode = require(`../http-codes`);
+const HttpCode = require(`../common/http-codes`);
 
 
 const server = express();

@@ -4,7 +4,7 @@ const request = require(`supertest`);
 
 const {baseOfferParams} = require(`./params`);
 const server = require(`../main`);
-const HttpCode = require(`../../http-codes`);
+const HttpCode = require(`../../common/http-codes`);
 
 
 const offerPropertyList = [

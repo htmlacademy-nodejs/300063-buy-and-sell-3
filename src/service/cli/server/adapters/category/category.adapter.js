@@ -2,7 +2,7 @@
 
 const fs = require(`fs`);
 const {HttpResponse} = require(`../http-response`);
-const {FILE_CATEGORIES_PATH} = require(`../../params`);
+const {FILE_CATEGORIES_PATH} = require(`../../common/params`);
 
 
 class CategoryAdapter {

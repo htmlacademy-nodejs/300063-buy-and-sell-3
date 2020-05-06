@@ -1,7 +1,7 @@
 'use strict';
 
 const server = require(`./api/main`);
-const params = require(`./params`);
+const params = require(`./common/params`);
 
 
 module.exports = {
