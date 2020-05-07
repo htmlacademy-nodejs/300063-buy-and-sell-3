@@ -10,9 +10,8 @@ const {LoggerCenter} = require(`../../../../utils`);
 const logger = LoggerCenter.getLogger();
 
 class CategoryAdapter {
-  _list = [];
-
   constructor() {
+    this._list = [];
     try {
       const content = fs.readFileSync(FILE_CATEGORIES_PATH, `utf8`);
       this._list = content.trim().split(`\n`);

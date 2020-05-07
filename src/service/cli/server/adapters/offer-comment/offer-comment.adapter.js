@@ -21,8 +21,8 @@ class OfferCommentAdapter {
     if (offerAdapterItem.status === STATUS_LIST.FAILED) {
       return offerAdapterItem;
     }
-    if (comment.text.trim() === '') {
-      return HttpResponse.badRequest(`Comment text can't be empty`)
+    if (comment.text.trim() === ``) {
+      return HttpResponse.badRequest(`Comment text can't be empty`);
     }
     const {comments} = offerAdapterItem.content;
     const newComment = {
@@ -39,7 +39,7 @@ class OfferCommentAdapter {
       return HttpResponse.badRequest(offerAdapterItem.content);
     }
     const {comments} = offerAdapterItem.content;
-    const commentIndex = comments.findIndex(comment => comment.id === commentId);
+    const commentIndex = comments.findIndex((comment) => comment.id === commentId);
     if (commentIndex === -1) {
       return HttpResponse.badRequest(`Offer comment with ${commentId} id doesn't exist`);
     }

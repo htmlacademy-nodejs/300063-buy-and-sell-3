@@ -4,23 +4,13 @@ const fs = require(`fs`);
 const {nanoid} = require(`nanoid`);
 
 const {HttpResponse, STATUS_LIST} = require(`../http-response`);
-const {validationPropertyList, FILENAME} = require(`../../common`);
+const {validationPropertyList, FILENAME, validationParams} = require(`../../common`);
 const {LoggerCenter} = require(`../../../../utils`);
 
 
 const logger = LoggerCenter.getLogger();
 
 class OfferAdapter {
-  _list = [];
-  _requiredPropertyList = [
-    `type`,
-    `title`,
-    `description`,
-    `sum`,
-    `picture`,
-    `categoryList`,
-  ];
-
   constructor() {
     try {
       this._list = JSON.parse(fs.readFileSync(FILENAME, `utf8`));
@@ -38,7 +28,7 @@ class OfferAdapter {
   }
 
   addItem(offerParams) {
-    const validation = validationPropertyList(this._requiredPropertyList, offerParams);
+    const validation = validationPropertyList(validationParams.requiredOfferPropertyList, offerParams);
     if (validation.status === STATUS_LIST.FAILED) {
       return HttpResponse.badRequest(validation.content);
     }
@@ -52,23 +42,23 @@ class OfferAdapter {
   }
 
   getItemById(offerId) {
-    if (offerId === '') {
+    if (offerId === ``) {
       return HttpResponse.badRequest(`Offer id can't be empty`);
     }
 
-    const offer = this._list.find(offer => offer.id === offerId);
-    if (offer === undefined) {
+    const currentOffer = this._list.find((offer) => offer.id === offerId);
+    if (currentOffer === undefined) {
       return HttpResponse.notFound(`Offer with ${offerId} id doesn't exist`);
     }
-    return HttpResponse.ok(offer);
+    return HttpResponse.ok(currentOffer);
   }
 
   updateItemById(offerId, offerParams) {
-    const validation = validationPropertyList(this._requiredPropertyList, offerParams);
+    const validation = validationPropertyList(validationParams.requiredOfferPropertyList, offerParams);
     if (validation.status === STATUS_LIST.FAILED) {
       return HttpResponse.badRequest(validation.content);
     }
-    const offerIndex = this._list.findIndex(offer => offer.id === offerId);
+    const offerIndex = this._list.findIndex((offer) => offer.id === offerId);
     if (offerIndex === -1) {
       return HttpResponse.badRequest(`Offer with ${offerId} id doesn't exist`);
     }
@@ -80,7 +70,7 @@ class OfferAdapter {
   }
 
   deleteItemById(offerId) {
-    const offerIndex = this._list.findIndex(item => item.id === offerId);
+    const offerIndex = this._list.findIndex((offer) => offer.id === offerId);
     if (offerIndex === -1) {
       return HttpResponse.badRequest(`Offer with ${offerId} id doesn't exist`);
     }
@@ -88,15 +78,15 @@ class OfferAdapter {
     return HttpResponse.noContent(`Offer with ${offerId} id deleted`);
   }
 
-  searchByTitle(title) {
+  searchByTitle(searchedTitle) {
     if (this._list.length === 0) {
       return HttpResponse.noContent(`Offer list is empty`);
     }
 
-    const searchedTitle = title.toLowerCase();
-    const filteredOfferList = this._list.filter(offer => {
+    const loweredSearchedTitle = searchedTitle.toLowerCase();
+    const filteredOfferList = this._list.filter((offer) => {
       const title = offer.title.toLowerCase();
-      return title.match(searchedTitle);
+      return title.match(loweredSearchedTitle);
     });
 
     if (this._list.length === 0) {

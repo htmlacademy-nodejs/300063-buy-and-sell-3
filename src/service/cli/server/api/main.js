@@ -7,16 +7,14 @@ const offersApi = require(`./api-offers`);
 const searchApi = require(`./api-search`);
 const {HttpCodes} = require(`../common`);
 const {LoggerCenter} = require(`../../../utils`);
+const {debugMiddleware} = require(`../../../middleware`);
 
 
 const server = express();
 
-server.use(LoggerCenter.pinoLogger);
+server.use(LoggerCenter.expressPinoLogger);
 server.use(express.json());
-server.use((req, res, next) => {
-  LoggerCenter.startRequest(req);
-  next();
-});
+server.use(debugMiddleware);
 
 server.use(`/api/categories`, apiCategories);
 server.use(`/api/offers`, offersApi);

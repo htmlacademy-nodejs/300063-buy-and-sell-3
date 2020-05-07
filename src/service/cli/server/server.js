@@ -16,7 +16,7 @@ module.exports = {
         logger.info(`Server start on ${port} port`);
       })
       .on(`error`, (error) => {
-        logger.error(`Server can't start. Error ${error}`)
+        logger.error(`Server can't start. Error ${error}`);
       });
   }
 };

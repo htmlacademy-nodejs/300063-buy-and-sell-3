@@ -22,7 +22,7 @@ const getValidationRequiredFieldMessage = (fields) => {
 
 module.exports = (requiredPropertyList, params) => {
   const propertyList = Object.keys(params);
-  const extraPropertyList = propertyList.filter(item => !requiredPropertyList.includes(item));
+  const extraPropertyList = propertyList.filter((property) => !requiredPropertyList.includes(property));
   if (extraPropertyList.length !== 0) {
     return {
       status: `failed`,
@@ -35,7 +35,7 @@ module.exports = (requiredPropertyList, params) => {
     };
   }
 
-  const requiredProperties = requiredPropertyList.filter(item => !params[item]);
+  const requiredProperties = requiredPropertyList.filter((property) => !params[property]);
   if (requiredProperties.length !== 0) {
     return {
       status: `failed`,

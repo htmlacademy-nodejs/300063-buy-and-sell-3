@@ -15,7 +15,7 @@ const getComments = (textComments) => {
   const emptyList = Array(getRandomInt(0, 5)).fill({});
   return emptyList.map(() => ({
     id: nanoid(),
-    text: shuffle(textComments).slice(0, getRandomInt(0, textComments.length - 1)).join(' '),
+    text: shuffle(textComments).slice(0, getRandomInt(0, textComments.length - 1)).join(` `),
   }));
 };
 
