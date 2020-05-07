@@ -4,8 +4,8 @@ const fs = require(`fs`);
 const {nanoid} = require(`nanoid`);
 
 const {HttpResponse, STATUS_LIST} = require(`../http-response`);
-const {validationPropertyList, FILENAME, validationParams} = require(`../../common`);
-const {LoggerCenter} = require(`../../../../utils`);
+const {FILENAME, validationParams} = require(`../../common`);
+const {LoggerCenter, validationPropertyList} = require(`../../utils`);
 
 
 const logger = LoggerCenter.getLogger();

@@ -6,6 +6,7 @@ const {baseOfferParams} = require(`../api-offers/params`);
 const server = require(`../main`);
 const {HttpCodes} = require(`../../common`);
 
+
 describe(`Search API end-points`, () => {
   let testOffer;
   const testTitle = `Test title`;

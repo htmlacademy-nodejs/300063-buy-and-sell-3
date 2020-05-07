@@ -4,6 +4,7 @@ const getRandomInt = require(`./getRandomInt`);
 const readContent = require(`./read-content`);
 const shuffle = require(`./shuffle`);
 const LoggerCenter = require(`./logger-center`);
+const validationPropertyList = require(`./validation-property-list`);
 
 
 module.exports = {
@@ -11,4 +12,5 @@ module.exports = {
   readContent,
   shuffle,
   LoggerCenter,
+  validationPropertyList,
 };

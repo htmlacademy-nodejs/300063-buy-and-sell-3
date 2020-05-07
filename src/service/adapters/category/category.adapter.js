@@ -4,7 +4,7 @@ const fs = require(`fs`);
 
 const {HttpResponse} = require(`../http-response`);
 const {FILE_CATEGORIES_PATH} = require(`../../common`);
-const {LoggerCenter} = require(`../../../../utils`);
+const {LoggerCenter} = require(`../../utils`);
 
 
 const logger = LoggerCenter.getLogger();

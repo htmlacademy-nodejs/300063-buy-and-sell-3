@@ -6,8 +6,8 @@ const apiCategories = require(`./api-categories`);
 const offersApi = require(`./api-offers`);
 const searchApi = require(`./api-search`);
 const {HttpCodes} = require(`../common`);
-const {LoggerCenter} = require(`../../../utils`);
-const {debugMiddleware} = require(`../../../middleware`);
+const {LoggerCenter} = require(`../utils`);
+const {debugMiddleware} = require(`../middleware`);
 
 
 const server = express();

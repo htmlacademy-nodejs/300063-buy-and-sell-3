@@ -1,7 +1,7 @@
 'use strict';
 
 const {OfferCommentAdapter} = require(`../../../../../adapters`);
-const {LoggerCenter} = require(`../../../../../../../utils`);
+const {LoggerCenter} = require(`../../../../../utils`);
 
 
 module.exports = async (req, res) => {

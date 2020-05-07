@@ -1,7 +1,7 @@
 'use strict';
 
 const {CategoryAdapter} = require(`../../adapters`);
-const {LoggerCenter} = require(`../../../../utils`);
+const {LoggerCenter} = require(`../../utils`);
 
 
 module.exports = (req, res) => {

@@ -1,6 +1,6 @@
 'use strict';
 
-const server = require(`./api/main`);
+const server = require(`../../api/main`);
 const {LoggerCenter} = require(`../../utils`);
 
 
