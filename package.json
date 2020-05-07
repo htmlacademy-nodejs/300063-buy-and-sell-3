@@ -4,7 +4,7 @@
   "description": "Куплю продам",
   "main": "./src/service/service.js",
   "scripts": {
-    "start": "node -r pino-debug -r dotenv/config ./src/service/service.js --server ./src/service/logs/app.log 2> ./src/service/logs/error.log",
+    "start": "node -r pino-debug -r dotenv/config ./src/service/service.js --server ./src/service/logs/app.log 1> ./src/service/logs/info.log 2> ./src/service/logs/error.log",
     "start.dev": "nodemon -r dotenv/config ./src/service/service.js --server",
     "start::debug": "cross-env LOG_LEVEL=debug npm start | ./node_modules/.bin/pino-pretty",
     "start-from-server": "cross-env DEFAULT_PORT=8080 node -r dotenv/config ./src/express/index.js",

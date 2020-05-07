@@ -13,6 +13,14 @@ class LoggerCenter {
     this.expressPinoLogger = expressPinoLogger({logger});
   }
 
+  startServer(port) {
+    this.logger.info(`Server start on ${port} port`);
+  }
+
+  errorStart(error) {
+    this.logger.error(`Server can't start. Error ${error}`);
+  }
+
   getLogger(options = {}) {
     return this.logger.child(options);
   }
