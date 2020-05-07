@@ -15,7 +15,7 @@ offersRouter.use(`/edit`, editRouter);
 
 
 offersRouter.get(`/:id`, (req, res) => res.render(`offers/id`, {
-    isAuthorized: false,
+  isAuthorized: false,
 }));
 
 module.exports = offersRouter;

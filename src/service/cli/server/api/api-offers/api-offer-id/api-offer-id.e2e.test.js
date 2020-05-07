@@ -1,6 +1,6 @@
 const request = require(`supertest`);
 const server = require(`../../main`);
-const HttpCode = require(`../../../common/http-codes`);
+const {HttpCodes} = require(`../../../common`);
 const {baseOfferParams} = require(`../params`);
 
 
@@ -25,9 +25,9 @@ describe(`Offer id API end-points`, () => {
       await request(server).delete(`/api/offers/${testOffer.id}`);
     });
 
-    test(`status code should be ${HttpCode.OK}`, async () => {
+    test(`status code should be ${HttpCodes.OK}`, async () => {
       const res = await request(server).get(`/api/offers/${testOffer.id}`);
-      expect(res.statusCode).toBe(HttpCode.OK);
+      expect(res.statusCode).toBe(HttpCodes.OK);
     });
 
     test.each(offerPropertyList)(`should have %p property`, async (property) => {
@@ -44,13 +44,13 @@ describe(`Offer id API end-points`, () => {
       testOffer = testOfferRes.body;
     });
 
-    test(`status code should be ${HttpCode.OK}`, async () => {
+    test(`status code should be ${HttpCodes.OK}`, async () => {
       const currentOffer = {...testOffer};
       const res = await request(server).put(`/api/offers/${currentOffer.id}`).send({
         ...baseOfferParams,
         type: `Продам`,
       });
-      expect(res.statusCode).toBe(HttpCode.OK);
+      expect(res.statusCode).toBe(HttpCodes.OK);
       await request(server).delete(`/api/offers/${currentOffer.id}`);
     });
 
@@ -70,27 +70,27 @@ describe(`Offer id API end-points`, () => {
       expect(res.body).toHaveProperty(property, propertyValue);
     });
 
-    test(`without require property status code should be ${HttpCode.BAD_REQUEST}`, async () => {
+    test(`without require property status code should be ${HttpCodes.BAD_REQUEST}`, async () => {
       const currentOffer = {...testOffer};
       const newParams = {...baseOfferParams};
       delete newParams.type;
       const res = await request(server).put(`/api/offers/${currentOffer.id}`).send(newParams);
-      expect(res.statusCode).toBe(HttpCode.BAD_REQUEST);
+      expect(res.statusCode).toBe(HttpCodes.BAD_REQUEST);
     });
   });
 
   describe(`When DELETE offer id`, () => {
-    test(`status code should be ${HttpCode.NO_CONTENT}`, async () => {
+    test(`status code should be ${HttpCodes.NO_CONTENT}`, async () => {
       const postRes = await request(server).post(`/api/offers`).send(baseOfferParams);
       const deleteRes = await request(server).delete(`/api/offers/${postRes.body.id}`);
-      expect(deleteRes.statusCode).toBe(HttpCode.NO_CONTENT);
+      expect(deleteRes.statusCode).toBe(HttpCodes.NO_CONTENT);
     });
 
-    test(`status code should be ${HttpCode.BAD_REQUEST} if delete not exist offer`, async () => {
+    test(`status code should be ${HttpCodes.BAD_REQUEST} if delete not exist offer`, async () => {
       const postRes = await request(server).post(`/api/offers`).send(baseOfferParams);
       await request(server).delete(`/api/offers/${postRes.body.id}`);
       const deleteRes = await request(server).delete(`/api/offers/${postRes.body.id}`);
-      expect(deleteRes.statusCode).toBe(HttpCode.BAD_REQUEST);
+      expect(deleteRes.statusCode).toBe(HttpCodes.BAD_REQUEST);
     });
   });
 });

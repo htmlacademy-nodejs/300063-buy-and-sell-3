@@ -1,9 +1,12 @@
 'use strict';
 
-const getJSONFromFile = require(`./get-json-from-file`);
 const validationPropertyList = require(`./validation-property-list`);
+const params = require(`./params`);
+const HttpCodes = require(`./http-codes`);
+
 
 module.exports = {
-  getJSONFromFile,
   validationPropertyList,
+  ...params,
+  HttpCodes,
 };

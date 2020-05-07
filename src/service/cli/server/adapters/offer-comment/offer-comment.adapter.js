@@ -1,6 +1,7 @@
 'use strict';
 
 const {nanoid} = require(`nanoid`);
+
 const {OfferAdapter} = require(`../offer`);
 const {HttpResponse, STATUS_LIST} = require(`../http-response`);
 

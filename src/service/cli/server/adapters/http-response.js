@@ -1,6 +1,6 @@
 'use strict';
 
-const HttpCodes = require(`../common/http-codes`);
+const {HttpCodes} = require(`../common`);
 
 
 const STATUS_LIST = {

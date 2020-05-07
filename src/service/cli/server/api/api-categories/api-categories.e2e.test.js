@@ -1,8 +1,9 @@
 'use strict';
 
 const request = require(`supertest`);
+
 const server = require(`../main`);
-const HttpCodes = require(`../../common/http-codes`);
+const {HttpCodes} = require(`../../common`);
 
 
 describe(`Categories API end-points`, () => {

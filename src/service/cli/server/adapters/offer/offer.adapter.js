@@ -2,10 +2,13 @@
 
 const fs = require(`fs`);
 const {nanoid} = require(`nanoid`);
-const {FILENAME} = require(`../../common/params`);
-const {HttpResponse, STATUS_LIST} = require(`../http-response`);
-const {validationPropertyList} = require(`../../common`);
 
+const {HttpResponse, STATUS_LIST} = require(`../http-response`);
+const {validationPropertyList, FILENAME} = require(`../../common`);
+const {LoggerCenter} = require(`../../../../utils`);
+
+
+const logger = LoggerCenter.getLogger();
 
 class OfferAdapter {
   _list = [];
@@ -21,8 +24,9 @@ class OfferAdapter {
   constructor() {
     try {
       this._list = JSON.parse(fs.readFileSync(FILENAME, `utf8`));
+      logger.debug(`Offer adapter init`);
     } catch (error) {
-      console.error(`Can't read file ${FILENAME}`, error);
+      logger.error(`Can't read file ${FILENAME} ${error}`);
     }
   }
 

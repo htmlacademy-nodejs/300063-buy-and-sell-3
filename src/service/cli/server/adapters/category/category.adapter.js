@@ -1,9 +1,13 @@
 'use strict';
 
 const fs = require(`fs`);
-const {HttpResponse} = require(`../http-response`);
-const {FILE_CATEGORIES_PATH} = require(`../../common/params`);
 
+const {HttpResponse} = require(`../http-response`);
+const {FILE_CATEGORIES_PATH} = require(`../../common`);
+const {LoggerCenter} = require(`../../../../utils`);
+
+
+const logger = LoggerCenter.getLogger();
 
 class CategoryAdapter {
   _list = [];
@@ -12,8 +16,9 @@ class CategoryAdapter {
     try {
       const content = fs.readFileSync(FILE_CATEGORIES_PATH, `utf8`);
       this._list = content.trim().split(`\n`);
+      logger.debug(`Category adapter init`);
     } catch (error) {
-      console.error(`Can't read file ${FILE_CATEGORIES_PATH}`, error);
+      logger.error(`Can't read file ${FILE_CATEGORIES_PATH} ${error}`);
     }
   }
 
