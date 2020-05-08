@@ -9,7 +9,7 @@ module.exports = {
   alias: `-s`,
   run(...args) {
     const [customPort] = args;
-    const port = parseInt(customPort, 10) || parseInt(process.env.DEFAULT_PORT, 10);
+    const port = parseInt(customPort, 10) || parseInt(process.env.SERVER_API_PORT, 10);
     server
       .listen(port, () => LoggerCenter.startServer(port))
       .on(`error`, (error) => LoggerCenter.errorStart(error));

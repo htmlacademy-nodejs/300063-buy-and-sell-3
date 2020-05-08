@@ -9,7 +9,7 @@ const searchRouter = new Router();
 
 searchRouter.get(`/`, (req, res) => {
   const ticketList = adaptData(mock);
-  res.render(`search/search`, {
+  res.render(`pages/search/search`, {
     title: `search`,
     description: `Страница поиска`,
     popularTicketListParams: {

@@ -10,7 +10,7 @@ const categoryRouter = new Router();
 categoryRouter.get(`/`, (req, res) => res.send(`/offers/category`));
 categoryRouter.get(`/:id`, (req, res) => {
   const ticketList = adaptData(mock);
-  res.render(`offers/category`, {
+  res.render(`pages/offers/category`, {
     title: `Offer category`,
     description: `Страница сформирована при помощи шаблонизатора Pug`,
     ticketListParams: {

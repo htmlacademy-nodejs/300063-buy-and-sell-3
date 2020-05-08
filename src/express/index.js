@@ -11,6 +11,4 @@ app.set(`views`, path.resolve(__dirname, `templates`));
 app.set(`view engine`, `pug`);
 
 app.use(`/`, mainRouter);
-app.listen(+process.env.DEFAULT_PORT);
-
-
+app.listen(+process.env.SERVER_PORT);

@@ -14,7 +14,7 @@ offersRouter.use(`/category`, categoryRouter);
 offersRouter.use(`/edit`, editRouter);
 
 
-offersRouter.get(`/:id`, (req, res) => res.render(`offers/id`, {
+offersRouter.get(`/:id`, (req, res) => res.render(`pages/offers/id`, {
   isAuthorized: false,
 }));
 

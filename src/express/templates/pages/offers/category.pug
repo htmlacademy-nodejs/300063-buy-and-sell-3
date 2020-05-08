@@ -1,10 +1,10 @@
-extends ../layout
+extends ../../layout
 
 block content
   main.page-content
-    include ../common/category
+    include ../../common/category
     - const params= ticketListParams
-    include ../common/ticket-list
+    include ../../common/ticket-list
 
     .tickets-list__pagination
       ul.pagination
