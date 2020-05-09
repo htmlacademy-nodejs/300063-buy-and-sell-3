@@ -2,8 +2,11 @@
 
 const {Router} = require(`express`);
 
+const {getEditOfferPage} = require(`./methods`);
+
+
 const editRouter = new Router();
 
-editRouter.get(`/:id`, (req, res) => res.render(`pages/offers/edit`));
+editRouter.get(`/:id`, getEditOfferPage);
 
 module.exports = editRouter;

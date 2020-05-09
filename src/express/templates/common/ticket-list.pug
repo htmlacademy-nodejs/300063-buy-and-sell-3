@@ -1,10 +1,11 @@
 section.tickets-list
-  h2.visually-hidden= params.hiddenTitle
+  h2.visually-hidden= ticketListParams.hiddenTitle
   .tickets-list__wrapper
     .tickets-list__header
-      p.tickets-list__title= params.title
+      if !isOwner
+        p.tickets-list__title= ticketListParams.title
     ul
-      each ticket, index in params.ticketList
+      each ticket, index in ticketListParams.list
         li.tickets-list__item
           div(class='ticket-card ticket-card--color0' + index)
             .ticket-card__img
@@ -15,9 +16,11 @@ section.tickets-list
                 a(href='#')= ticket.category
               .ticket-card__header
                 h3.ticket-card__title
-                  a(href='/offers/1')= ticket.title
+                  a(href=`/offers/${ticket.id}`)= ticket.title
                 p.ticket-card__price
-                  span.js-sum= ticket.sum
-                  |  ₽
-              .ticket-card__desc
-                p= ticket.description
+                  span.js-sum #{ticket.sum} ₽
+              if !isOwner
+                .ticket-card__desc
+                  p= ticket.description
+            if isOwner
+              button.ticket-card__del.js-delete(type='button') Удалить
