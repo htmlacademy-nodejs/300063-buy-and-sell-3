@@ -13,13 +13,10 @@ const getPictureFileName = (number) => number > params.MAX_NUMBER_WITH_ZERO ? `i
 
 const getComments = (textComments) => {
   const emptyList = Array(getRandomInt(0, 5)).fill({});
-  return emptyList.map(item => {
-    item = {
-      id: nanoid(),
-      text: shuffle(textComments).slice(0, getRandomInt(0, textComments.length - 1)).join(' '),
-    };
-    return item;
-  });
+  return emptyList.map(() => ({
+    id: nanoid(),
+    text: shuffle(textComments).slice(0, getRandomInt(0, textComments.length - 1)).join(` `),
+  }));
 };
 
 const generateOffers = (count, titles, sentences, categories, comments) => (
@@ -38,7 +35,7 @@ const generateOffers = (count, titles, sentences, categories, comments) => (
 module.exports = {
   name: `--generate`,
   alias: `-g`,
-  async run(args) {
+  async run(...args) {
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || params.DEFAULT_COUNT;
 

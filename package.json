@@ -4,11 +4,14 @@
   "description": "Куплю продам",
   "main": "./src/service/service.js",
   "scripts": {
-    "start": "node ./src/service/service.js",
-    "start.dev": "nodemon ./src/service/service.js --server",
-    "start-from-server": "node ./src/express/index.js",
-    "start-from-server.dev": "nodemon ./src/express/index.js",
-    "test": "npm run eslint",
+    "start": "node -r pino-debug -r dotenv/config ./src/service/service.js --server ./src/service/logs/app.log 1> ./src/service/logs/info.log 2> ./src/service/logs/error.log",
+    "start.dev": "nodemon -r dotenv/config ./src/service/service.js --server",
+    "start::debug": "cross-env LOG_LEVEL=debug npm start | ./node_modules/.bin/pino-pretty",
+    "start-from-server": "cross-env DEFAULT_PORT=8080 node -r dotenv/config ./src/express/index.js",
+    "start-from-server.dev": "cross-env DEFAULT_PORT=8080 nodemon -r dotenv/config ./src/express/index.js",
+    "test": "npm run eslint && npm run test::rest",
+    "test::rest": "cross-env LOG_LEVEL=error jest ./src/service --verbose",
+    "test::rest.dev": "cross-env LOG_LEVEL=error jest ./src/service --watchAll --verbose",
     "eslint": "eslint --ext .js src/"
   },
   "repository": {
@@ -23,13 +26,23 @@
   "homepage": "https://github.com/Kvezal/300063-buy-and-sell-3#readme",
   "devDependencies": {
     "chalk": "3.0.0",
+    "debug": "4.1.1",
     "eslint": "6.8.0",
     "eslint-config-htmlacademy": "0.5.2",
-    "nodemon": "2.0.2"
+    "jest": "26.0.0",
+    "nodemon": "2.0.2",
+    "pino-debug": "1.3.0",
+    "pino-pretty": "4.0.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "cross-env": "7.0.2",
+    "dotenv": "8.2.0",
     "express": "4.17.1",
+    "express-pino-logger": "5.0.0",
     "nanoid": "3.1.3",
+    "pino": "6.2.1",
     "pug": "2.0.4"
   }
 }

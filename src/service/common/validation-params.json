@@ -1,0 +1,10 @@
+{
+  "requiredOfferPropertyList": [
+    "type",
+    "title",
+    "description",
+    "sum",
+    "picture",
+    "categoryList"
+  ]
+}
