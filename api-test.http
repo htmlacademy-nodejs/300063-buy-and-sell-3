@@ -1,0 +1,111 @@
+### Валидный запрос на создание offer
+POST http://localhost:3000/api/offers
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "type": "Куплю",
+  "title": "Заголовок",
+  "description": "Описание",
+  "sum": 40000,
+  "picture": "Картинка",
+  "categoryList": ["Категория 1", "Категория 2", "Категория 3"]
+}
+
+
+### Невалидный запрос на создание offer (отсутствую толя)
+POST http://localhost:3000/api/offers
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+"type": "Куплю",
+"title": "Заголовок",
+"description": "Описание",
+"picture": "Картинка"
+}
+
+### Невалидный запрос на создание offer (невалидные имена полей)
+POST http://localhost:3000/api/offers
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "type": "Куплю",
+  "name": "Заголовок",
+  "description": "Описание",
+  "picture": "Картинка"
+}
+
+### Получение offer по ID
+GET http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
+Content-Type: application/json
+
+### редактирование предложения
+PUT http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
+Content-Type: application/json
+
+{
+  "type": "buy",
+  "title": "title",
+  "description": "description",
+  "sum": 5000,
+  "picture": "picture",
+  "categoryList": [
+    "Категория 4"
+  ]
+}
+
+### для проверки на ошибку при редактировании предложения
+PUT http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
+Content-Type: application/json
+
+{
+  "_type": "buy",
+  "name": "title",
+  "description": "description",
+  "sum": 10000,
+  "picture": "picture",
+  "categoryList": [
+    "Категория 4"
+  ]
+}
+
+### Удаление предложения
+DELETE http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo
+
+### Получить список категорий предложений
+GET http://localhost:3000/api/categories
+Content-Type: application/json
+
+### Добавить новый комментарий
+POST http://localhost:3000/api/offers/-UrVXocGxPurlmF2rpKaS/comments
+Content-Type: application/json
+
+{
+  "text": "Новый комментарий!!!"
+}
+
+### Отправка несуществующего поля
+POST http://localhost:3000/api/offers/zI0ybwolF0yqjpFk0xtSo/comments
+Content-Type: application/json
+
+{
+  "texxt": "Новый комментарий!!!"
+}
+
+### отправка с отсутствующим комментарием
+POST http://localhost:3000/api/offers/-UrVXocGxPurlmF2rpKaS/comments
+Content-Type: application/json
+
+{}
+
+### Удаление комментария для предложения
+DELETE http://localhost:3000/api/offers/-UrVXocGxPurlmF2rpKaS/comments/UY0TKigbygfFETWmWeFdo
+
+###
+
+### Фильтрация предложений по полю title
+GET http://localhost:3000/api/search?title=Sony
+
+###

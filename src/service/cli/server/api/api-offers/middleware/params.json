@@ -1,0 +1,10 @@
+{
+  "offerPropertyList": [
+    "type",
+    "title",
+    "description",
+    "sum",
+    "picture",
+    "categoryList"
+  ]
+}
