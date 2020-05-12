@@ -2,7 +2,7 @@
 
 const p = require(`path`);
 
-const {HttpResponse} = require(`../../common`);
+// const {HttpResponse} = require(`../common`);
 
 
 class FileAdapter {
@@ -12,12 +12,14 @@ class FileAdapter {
 
     if (size === 0 || !allowTypes.includes(type)) {
       fs.unlink(path);
-      return HttpResponse.badRequest(``);
+      return `bad request`;
+      // return HttpResponse.badRequest(``);
     }
     try {
-      await fs.rename(path, p.resolve(__dirname, `../../../../public/img/avatars/${name}`));
+      await fs.rename(path, p.resolve(__dirname, `../public/img/avatars/${name}`));
     } catch (error) {
-      return res.send(`Oops! Error: ${error.message}`);
+      return `\`Oops! Error: ${error.message}\``
+      // return res.send(`Oops! Error: ${error.message}`);
     }
   }
 }
