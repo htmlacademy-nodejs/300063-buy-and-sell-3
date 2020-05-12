@@ -12,6 +12,10 @@ section.tickets-list
               img(src=ticket.picture.base srcset=ticket.picture.retina + ticket.picture alt='Иконка категории')
             .ticket-card__info
               span.ticket-card__label= ticket.type
+              if ticket.type === `buy`
+                span.ticket-card__label КУПЛЮ
+              if ticket.type === `sell`
+                span.ticket-card__label ПРОДАМ
               .ticket-card__categories
                 a(href='#')= ticket.category
               .ticket-card__header

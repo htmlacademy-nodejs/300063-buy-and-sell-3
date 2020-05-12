@@ -43,6 +43,7 @@ class OfferAdapter {
 
   getItemById(offerId) {
     if (offerId === ``) {
+
       return HttpResponse.badRequest(`Offer id can't be empty`);
     }
 
