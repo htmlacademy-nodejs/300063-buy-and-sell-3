@@ -27,10 +27,8 @@ block content
                   span Обязательное поле
               .ticket-form__row
                 select#category-field.form__select.js-multiple-select(name='categoryList' data-label='Выбрать категорию публикации')
-                  option(value='1') Дом
-                  option(value='2') Спорт и отдых
-                  option(value='3') Авто
-                  option(value='4') Электроника
+                  each category in categoryList
+                    option(value=category)= category
               .ticket-form__row
                 .form__field.form__field--price
                   input#sum-field.js-field.js-price(type='number' name='sum' min='1' required)

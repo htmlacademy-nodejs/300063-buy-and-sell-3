@@ -2,7 +2,10 @@
 
 const {Router} = require(`express`);
 
+const {getAddOfferPage} = require(`./methods`);
+
+
 const addRouter = new Router();
-addRouter.get(`/`, (req, res) => res.render(`pages/offers/add`));
+addRouter.get(`/`, getAddOfferPage);
 
 module.exports = addRouter;
