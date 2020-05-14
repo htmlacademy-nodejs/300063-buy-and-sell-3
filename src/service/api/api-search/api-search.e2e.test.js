@@ -1,10 +1,10 @@
 'use strict';
 
 const request = require(`supertest`);
+const HttpCodes = require(`http-status-codes`);
 
 const {baseOfferParams} = require(`../api-offers/params`);
 const server = require(`../main`);
-const {HttpCodes} = require(`../../common`);
 
 
 describe(`Search API end-points`, () => {

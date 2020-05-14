@@ -4,9 +4,9 @@ const pino = require(`pino`);
 const expressPinoLogger = require(`express-pino-logger`);
 
 class LoggerCenter {
-  constructor() {
+  constructor(name) {
     const logger = pino({
-      name: `server`,
+      name,
       level: process.env.LOG_LEVEL || `info`,
     });
     this.logger = logger;
@@ -30,8 +30,8 @@ class LoggerCenter {
   }
 
   errorEndRequest(req, statusCode) {
-    this.logger.error(`End ${req.method} request to ${req.originalUrl} with error ${statusCode}`);
+    this.logger.error(`End ${req.method} request to url${req.originalUrl} with error ${statusCode}`);
   }
 }
 
-module.exports = new LoggerCenter();
+module.exports = LoggerCenter;

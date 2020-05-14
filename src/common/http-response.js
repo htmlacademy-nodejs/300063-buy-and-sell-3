@@ -1,17 +1,13 @@
 'use strict';
 
 const HttpCodes = require(`http-status-codes`);
+const StatusList = require(`./status-list`);
 
-
-const STATUS_LIST = {
-  SUCCESS: `success`,
-  FAILED: `failed`,
-};
 
 class HttpResponse {
   ok(content) {
     return {
-      status: STATUS_LIST.SUCCESS,
+      status: StatusList.SUCCESS,
       statusCode: HttpCodes.OK,
       content,
     };
@@ -19,7 +15,7 @@ class HttpResponse {
 
   notFound(content) {
     return {
-      status: STATUS_LIST.FAILED,
+      status: StatusList.FAILED,
       statusCode: HttpCodes.NOT_FOUND,
       content,
     };
@@ -27,7 +23,7 @@ class HttpResponse {
 
   badRequest(content) {
     return {
-      status: STATUS_LIST.FAILED,
+      status: StatusList.FAILED,
       statusCode: HttpCodes.BAD_REQUEST,
       content,
     };
@@ -35,7 +31,7 @@ class HttpResponse {
 
   internalServerError(content) {
     return {
-      status: STATUS_LIST.FAILED,
+      status: StatusList.FAILED,
       statusCode: HttpCodes.INTERNAL_SERVER_ERROR,
       content,
     };
@@ -43,7 +39,7 @@ class HttpResponse {
 
   noContent(content) {
     return {
-      status: STATUS_LIST.SUCCESS,
+      status: StatusList.SUCCESS,
       statusCode: HttpCodes.NO_CONTENT,
       content,
     };
@@ -51,14 +47,11 @@ class HttpResponse {
 
   created(content) {
     return {
-      status: STATUS_LIST.SUCCESS,
+      status: StatusList.SUCCESS,
       statusCode: HttpCodes.CREATED,
       content,
     };
   }
 }
 
-module.exports = {
-  STATUS_LIST,
-  HttpResponse: new HttpResponse(),
-};
+module.exports = new HttpResponse();

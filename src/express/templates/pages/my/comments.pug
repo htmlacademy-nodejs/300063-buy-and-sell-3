@@ -25,8 +25,7 @@ block content
                       .comment-card__header
                         a.comment-card__avatar.avatar(href='#')
                           img(
-                            src=`img/avatars/${comment.user.avatar}.${comment.user.extension}`
-                            srcset=`img/avatars/${comment.user.avatar}@2x.${comment.user.extension} 2x`
+                            src=`img/avatars/${comment.user.avatar}`
                             alt='Аватар пользователя')
                         p.comment-card__author= comment.user.name
                     .comment-card__content

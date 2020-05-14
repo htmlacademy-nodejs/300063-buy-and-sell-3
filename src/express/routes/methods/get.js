@@ -1,6 +1,8 @@
 'use strict';
 
-const {adaptData} = require(`../../utils`);
+const HttpCodes = require(`http-status-codes`);
+
+const {adaptData, logger} = require(`../../utils`);
 const {OfferAdapter} = require(`../../adapters`);
 
 
@@ -24,4 +26,7 @@ module.exports = async (req, res) => {
     },
   };
   res.render(`index`, pageContent);
+  if (res.statusCode >= HttpCodes.BAD_REQUEST) {
+    logger.errorEndRequest(req, res.statusCode);
+  }
 };

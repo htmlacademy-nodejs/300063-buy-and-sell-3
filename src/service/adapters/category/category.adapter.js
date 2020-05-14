@@ -2,12 +2,12 @@
 
 const fs = require(`fs`);
 
-const {HttpResponse} = require(`../http-response`);
+const {HttpResponse} = require(`../../../common`);
 const {FILE_CATEGORIES_PATH} = require(`../../common`);
-const {LoggerCenter} = require(`../../utils`);
+const {logger} = require(`../../utils`);
 
 
-const logger = LoggerCenter.getLogger();
+const log = logger.getLogger();
 
 class CategoryAdapter {
   constructor() {
@@ -15,9 +15,9 @@ class CategoryAdapter {
     try {
       const content = fs.readFileSync(FILE_CATEGORIES_PATH, `utf8`);
       this._list = content.trim().split(`\n`);
-      logger.debug(`Category adapter init`);
+      log.debug(`Category adapter init`);
     } catch (error) {
-      logger.error(`Can't read file ${FILE_CATEGORIES_PATH} ${error}`);
+      log.error(`Can't read file ${FILE_CATEGORIES_PATH} ${error}`);
     }
   }
 

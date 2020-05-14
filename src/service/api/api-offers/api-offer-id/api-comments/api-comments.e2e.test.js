@@ -1,10 +1,10 @@
 'use strict';
 
 const request = require(`supertest`);
+const HttpCodes = require(`http-status-codes`);
 
 const {baseOfferParams} = require(`../../params`);
 const server = require(`../../../main`);
-const {HttpCodes} = require(`../../../../common`);
 
 
 describe(`Offer comments API end-points`, () => {
