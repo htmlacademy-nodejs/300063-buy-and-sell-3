@@ -43,10 +43,8 @@ class OfferAdapter {
 
   getItemById(offerId) {
     if (offerId === ``) {
-
       return HttpResponse.badRequest(`Offer id can't be empty`);
     }
-
     const currentOffer = this._list.find((offer) => offer.id === offerId);
     if (currentOffer === undefined) {
       return HttpResponse.notFound(`Offer with ${offerId} id doesn't exist`);

@@ -18,6 +18,5 @@ module.exports = async (req, res) => {
     isOwner: true,
     offerList: offerUIList,
   };
-  console.log(pageContent);
   res.render(`pages/my/comments`, pageContent);
 };

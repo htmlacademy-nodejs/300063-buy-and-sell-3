@@ -1,6 +1,6 @@
 'use strict';
 
-const Request = require(`./request`);
+const Request = require(`../request`);
 
 
 class CategoryAdapter {

@@ -1,20 +1,37 @@
 'use strict';
 
-const request = require(`request-promise-native`);
+const axios = require(`axios`);
 
 
 class Request {
   constructor() {
-    this._url = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.SERVER_API_PORT}/api/`;
+    this._url = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.SERVER_API_PORT}/api`;
+  }
+
+  _getErrorStatus(error) {
+    return {
+      status: `failed`,
+      statusCode: error.response.status,
+      content: error.response.data,
+    };
   }
 
   async get(path) {
-    return await request(`${this._url}${path}`, {json: true});
+    return await axios.get(`${this._url}/${path}`)
+      .then((res) => res.data)
+      .catch(this._getErrorStatus);
   }
 
   async post(path, params) {
-    const json = JSON.stringify(params);
-    return request.post(`${this._url}${path}`, {json});
+    return await axios.post(`${this._url}/${path}`, params)
+      .then((res) => res.data)
+      .catch(this._getErrorStatus);
+  }
+
+  async put(path, params) {
+    return await axios.put(`${this._url}/${path}`, params)
+      .then((res) => res.data)
+      .catch(this._getErrorStatus);
   }
 }
 
