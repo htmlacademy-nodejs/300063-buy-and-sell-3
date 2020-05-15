@@ -7,11 +7,12 @@ const mock = require(`../../../../../mock`);
 
 
 const getSearchTitle = (count) => {
-  return getPluralMessage({
-    one: `Найдено #{count} публикация`,
-    few: `Найдено #{count} публикации`,
-    other: `Найдено #{count} публикаций`,
+  const pluralMessage = getPluralMessage({
+    one: `#{count} публикация`,
+    few: `#{count} публикации`,
+    other: `#{count} публикаций`,
   }, {count});
+  return `Найдено ${pluralMessage}`;
 };
 
 
