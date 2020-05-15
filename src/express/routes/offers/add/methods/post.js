@@ -1,23 +1,34 @@
 'use strict';
 
+const getAddOfferPage = require(`./get`);
 const {OfferAdapter, FileAdapter} = require(`../../../../adapters`);
 const {logger} = require(`../../../../utils`);
 
 
-module.exports = async (req, res) => {
+const downloadFile = async (req) => {
+  if (!req.file) {
+    return;
+  }
   const fileResponse = await FileAdapter.download(req.file);
   if (fileResponse.status === `failed`) {
     logger.endRequest(req, fileResponse.statusCode);
-    res.redirect(`/offers/add`);
+    return getAddOfferPage(req, res);
+  } else {
+    req.body.picture = fileResponse.content;
   }
-  const offer = await OfferAdapter.addItem({
-    ...req.body,
-    picture: fileResponse.content,
-  });
+};
+
+const addOfferItemAndRedirectToMyOffers = async (req, res) => {
+  const offer = await OfferAdapter.addItem(req.body);
   if (offer.status === `failed`) {
     logger.endRequest(req, offer.statusCode);
-    return res.redirect(`/offers/add`);
+    return getAddOfferPage(req, res);
   }
   res.redirect(`/my`);
+};
+
+module.exports = async (req, res) => {
+  await downloadFile(req);
+  await addOfferItemAndRedirectToMyOffers();
   logger.endRequest(req, res.statusCode);
 };

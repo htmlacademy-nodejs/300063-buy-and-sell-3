@@ -9,7 +9,7 @@ section.tickets-list
         li.tickets-list__item
           div(class='ticket-card ticket-card--color0' + index)
             .ticket-card__img
-              img(src=ticket.picture.base srcset=ticket.picture.retina + ticket.picture alt='Иконка категории')
+              img(src=ticket.picture.base srcset=ticket.picture.retina + ticket.picture alt='Картинка предложения')
             .ticket-card__info
               span.ticket-card__label= ticket.type
               if ticket.type === `buy`

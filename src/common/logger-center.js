@@ -29,8 +29,7 @@ class LoggerCenter {
 
   endRequest(req, statusCode) {
     const message = `End ${req.method} request to url ${req.originalUrl} with status code ${statusCode}`;
-    const loggerAction = statusCode > HttpCodes.BAD_REQUEST ? this.logger.error : this.logger.info;
-    loggerAction(message);
+    const loggerAction = statusCode > HttpCodes.BAD_REQUEST ? this.logger.error(message) : this.logger.info(message);
   }
 
   errorEndRequest(req, statusCode) {

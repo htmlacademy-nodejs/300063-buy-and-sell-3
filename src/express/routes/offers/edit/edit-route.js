@@ -9,6 +9,6 @@ const {upload} = require(`../../../utils`);
 const editRouter = new Router();
 
 editRouter.get(`/:id`, getEditOfferPage);
-editRouter.post(`/:id`, upload(`picture`), postOffer);
+editRouter.post(`/:id`, upload(`image`), postOffer);
 
 module.exports = editRouter;
