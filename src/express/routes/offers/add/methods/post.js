@@ -5,7 +5,7 @@ const {OfferAdapter, FileAdapter} = require(`../../../../adapters`);
 const {logger} = require(`../../../../utils`);
 
 
-const downloadFile = async (req, res) => {
+const setFileName = async (req, res) => {
   if (!req.file) {
     return;
   }
@@ -28,7 +28,7 @@ const addOfferItemAndRedirectToMyOffers = async (req, res) => {
 };
 
 module.exports = async (req, res) => {
-  await downloadFile(req, res);
+  await setFileName(req, res);
   await addOfferItemAndRedirectToMyOffers(req, res);
   logger.endRequest(req, res.statusCode);
 };

@@ -5,29 +5,32 @@ const {logger} = require(`../../../../utils`);
 const getEditOfferPage = require(`./get`);
 
 
-
-module.exports = async (req, res) => {
-  let offer = {...req.body};
-
-  if (req.file) {
-    const fileResponse = await FileAdapter.download(req.file);
-    if (fileResponse.status === `failed`) {
-      logger.endRequest(req, fileResponse.statusCode);
-      return getEditOfferPage(req, res);
-    }
-    offer = {
-      ...offer,
-      picture: fileResponse.content,
-    };
-  } else {
+const setFileName = async (req, res) => {
+  if (!req.file) {
     const currentOfferResponse = await OfferAdapter.getItemById(req.params.id);
-    offer.picture = currentOfferResponse.picture;
+    req.body.picture = req.body.picture || currentOfferResponse.picture;
+    return;
   }
-  const offerResponse = await OfferAdapter.updateItemById(req.params.id, offer);
+  const fileResponse = await FileAdapter.download(req.file);
+  if (fileResponse.status === `failed`) {
+    logger.endRequest(req, fileResponse.statusCode);
+    return getEditOfferPage(req, res);
+  }
+  req.body.picture = fileResponse.content;
+};
+
+const updateOfferItemAndRedirect = async (req, res) => {
+  const offerResponse = await OfferAdapter.updateItemById(req.params.id, req.body);
   if (offerResponse.status === `failed`) {
     logger.endRequest(req, offerResponse.statusCode);
     return getEditOfferPage(req, res);
   }
   res.redirect(`/offers/${req.params.id}`);
+};
+
+
+module.exports = async (req, res) => {
+  await setFileName(req, res);
+  await updateOfferItemAndRedirect(req, res);
   logger.endRequest(req, res.statusCode);
 };

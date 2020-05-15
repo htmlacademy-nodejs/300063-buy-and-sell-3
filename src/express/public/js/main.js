@@ -14,7 +14,6 @@
 'use strict';
 
 (function () {
-
   var form = document.querySelector('.form');
 
   if (form) {
@@ -65,7 +64,6 @@
 
     var selects = document.querySelectorAll('.js-multiple-select');
     for (var i = 0; i < selects.length; i++) {
-      const select = selects[i];
       var placeholder = selects[i].getAttribute('data-label');
       var SS = new Selectr(selects[i], {
         searchable: false,
@@ -89,7 +87,7 @@
 
       Selectr.prototype.deselect = function(){
         deselection.apply(this, arguments);
-        updateOurs(selects[i].value);
+        updateOurs();
       };
       updateOurs();
     }

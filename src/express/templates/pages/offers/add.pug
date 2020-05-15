@@ -36,7 +36,8 @@ block content
                   label(for='description-field') Описание
                   span Обязательное поле
               .ticket-form__row
-                select#category-field.form__select.js-multiple-select(name='categoryList[]'
+                select#category-field.form__select.js-multiple-select(
+                  name='categoryList[]'
                   data-label='Выбрать категорию публикации'
                   multiple='multiple')
                   each category in categoryList
