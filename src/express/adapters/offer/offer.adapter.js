@@ -18,6 +18,10 @@ class OfferAdapter {
   async updateItemById(offerId, params) {
     return await Request.put(`offers/${offerId}`, params);
   }
+
+  async searchItem(url) {
+    return await Request.get(`search?title=${encodeURI(url)}`);
+  }
 }
 
 module.exports = new OfferAdapter();
