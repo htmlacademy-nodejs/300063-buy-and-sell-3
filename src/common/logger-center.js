@@ -7,12 +7,11 @@ const HttpCodes = require(`http-status-codes`);
 
 class LoggerCenter {
   constructor(name) {
-    const logger = pino({
+    this.logger = pino({
       name,
       level: process.env.LOG_LEVEL || `info`,
     });
-    this.logger = logger;
-    this.expressPinoLogger = expressPinoLogger({logger});
+    this.expressPinoLogger = expressPinoLogger({logger: this.logger});
   }
 
   startServer(port) {
@@ -29,7 +28,11 @@ class LoggerCenter {
 
   endRequest(req, statusCode) {
     const message = `End ${req.method} request to url ${req.originalUrl} with status code ${statusCode}`;
-    const loggerAction = statusCode > HttpCodes.BAD_REQUEST ? this.logger.error(message) : this.logger.info(message);
+    if (statusCode > HttpCodes.BAD_REQUEST) {
+      this.logger.error(message);
+    } else {
+      this.logger.info(message);
+    }
   }
 
   errorEndRequest(req, statusCode) {

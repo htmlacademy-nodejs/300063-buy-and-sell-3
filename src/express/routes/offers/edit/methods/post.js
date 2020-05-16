@@ -14,18 +14,20 @@ const setFileName = async (req, res) => {
   const fileResponse = await FileAdapter.download(req.file);
   if (fileResponse.status === `failed`) {
     logger.endRequest(req, fileResponse.statusCode);
-    return getEditOfferPage(req, res);
+    await getEditOfferPage(req, res);
+  } else {
+    req.body.picture = fileResponse.content;
   }
-  req.body.picture = fileResponse.content;
 };
 
 const updateOfferItemAndRedirect = async (req, res) => {
   const offerResponse = await OfferAdapter.updateItemById(req.params.id, req.body);
   if (offerResponse.status === `failed`) {
     logger.endRequest(req, offerResponse.statusCode);
-    return getEditOfferPage(req, res);
+    await getEditOfferPage(req, res);
+  } else {
+    res.redirect(`/offers/${req.params.id}`);
   }
-  res.redirect(`/offers/${req.params.id}`);
 };
 
 

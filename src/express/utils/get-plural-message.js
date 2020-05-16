@@ -15,13 +15,13 @@ const getTypeCount = (count) => {
     return `one`;
   }
   const isZero = restOfTen === 0;
-  const isOtherOfHundred = 5 <= restOfOneHundred && restOfOneHundred < 21;
-  const isOtherOfTen = 5 <= restOfTen && restOfTen < 10;
+  const isOtherOfHundred = restOfOneHundred >= 5 && restOfOneHundred < 21;
+  const isOtherOfTen = restOfTen >= 5 && restOfTen < 10;
   if (isZero || isOtherOfHundred || isOtherOfTen) {
-    return `other`
+    return `other`;
   }
   return `few`;
-}
+};
 
 const insertParams = (text, params) =>
   Object.keys(params).reduce((message, property) => {

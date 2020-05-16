@@ -5,12 +5,15 @@ const {logger} = require(`../../../../utils`);
 
 
 module.exports = async (req, res) => {
-  const currentOffer = await OfferAdapter.getItemById(req.params.id);
-  const offer = {
-    id: currentOffer.id,
-    comments: currentOffer.comments,
-    ...req.body,
-  };
+  let offer = await OfferAdapter.getItemById(req.params.id);
+  if (Object.keys(req.body).length > 0) {
+    offer = {
+      id: offer.id,
+      comments: offer.comments,
+      ...req.body,
+    };
+  }
+
   const categoryList = await CategoryAdapter.getList();
   const pageContent = {
     title: `Редактирование предложения`,

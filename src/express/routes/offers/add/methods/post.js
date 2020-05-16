@@ -12,7 +12,7 @@ const setFileName = async (req, res) => {
   const fileResponse = await FileAdapter.download(req.file);
   if (fileResponse.status === `failed`) {
     logger.endRequest(req, fileResponse.statusCode);
-    return getAddOfferPage(req, res);
+    await getAddOfferPage(req, res);
   } else {
     req.body.picture = fileResponse.content;
   }
@@ -22,9 +22,10 @@ const addOfferItemAndRedirectToMyOffers = async (req, res) => {
   const offer = await OfferAdapter.addItem(req.body);
   if (offer.status === `failed`) {
     logger.endRequest(req, offer.statusCode);
-    return getAddOfferPage(req, res);
+    await getAddOfferPage(req, res);
+  } else {
+    res.redirect(`/my`);
   }
-  res.redirect(`/my`);
 };
 
 module.exports = async (req, res) => {

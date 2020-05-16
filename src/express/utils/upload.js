@@ -2,15 +2,18 @@
 
 const path = require(`path`);
 const multer = require(`multer`);
+const {DEFAULT_TEMP_DIR} = require(`../common`);
 
+
+const tempDir = process.env.TEMP_DIR || DEFAULT_TEMP_DIR;
 
 const upload = (fieldName) => {
   const storage = multer.diskStorage({
     destination(req, file, cb) {
-      cb(null, path.resolve(__dirname, `../temp/`))
+      cb(null, path.resolve(__dirname, `../${tempDir}/`));
     },
     filename(req, file, cb) {
-      cb(null, `${+Date.now()}-${file.originalname}`)
+      cb(null, `${+Date.now()}-${file.originalname}`);
     },
   });
   const temp = multer({storage});
