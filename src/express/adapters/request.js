@@ -1,11 +1,15 @@
 'use strict';
 
 const axios = require(`axios`);
+const {DEFAULT_PROTOCOL, DEFAULT_PORT, DEFAULT_DOMAIN} = require(`../common`);
 
 
 class Request {
   constructor() {
-    this._url = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.SERVER_API_PORT}/api`;
+    const protocol = process.env.PROTOCOL || DEFAULT_PROTOCOL;
+    const domain = process.env.DOMAIN || DEFAULT_DOMAIN;
+    const port = parseInt(process.env.SERVER_API_PORT, 10) || DEFAULT_PORT;
+    this._url = `${protocol}://${domain}:${port}/api`;
   }
 
   _getErrorStatus(error) {

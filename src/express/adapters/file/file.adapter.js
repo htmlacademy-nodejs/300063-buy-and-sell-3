@@ -2,6 +2,8 @@
 
 const path = require(`path`);
 const fs = require(`fs`).promises;
+
+const {DEFAULT_PUBLIC_DIR} = require(`../../common`);
 const {HttpResponse} = require(`../../../common`);
 
 
@@ -18,7 +20,8 @@ class FileAdapter {
       return HttpResponse.badRequest(`File can't be empty`);
     }
     try {
-      const newFilePath = path.resolve(destination, `../${process.env.PUBLIC_DIR || `public`}/img/${filename}`);
+      const publicDir = process.env.PUBLIC_DIR || DEFAULT_PUBLIC_DIR;
+      const newFilePath = path.resolve(destination, `../${publicDir}/img/${filename}`);
       await fs.rename(filePath, newFilePath);
       return HttpResponse.ok(filename);
     } catch (error) {
