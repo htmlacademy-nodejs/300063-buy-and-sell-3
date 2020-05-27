@@ -7,8 +7,8 @@
   "FILE_COMMENTS_PATH": "./data/comments.txt",
   "MAX_NUMBER_WITH_ZERO": 9,
   "OfferType": {
-    "OFFER": "Куплю",
-    "SALE": "Продам"
+    "BUY": "buy",
+    "SELL": "sell"
   },
   "SumRestrict": {
     "MIN": 1000,

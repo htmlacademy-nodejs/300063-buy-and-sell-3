@@ -3,13 +3,13 @@
 const {nanoid} = require(`nanoid`);
 
 const {OfferAdapter} = require(`../offer`);
-const {HttpResponse, STATUS_LIST} = require(`../http-response`);
+const {HttpResponse, StatusList} = require(`../../../common`);
 
 
 class OfferCommentAdapter {
   getList(offerId) {
     const offerAdapterItem = OfferAdapter.getItemById(offerId);
-    if (offerAdapterItem.status === STATUS_LIST.FAILED) {
+    if (offerAdapterItem.status === StatusList.FAILED) {
       return offerAdapterItem;
     }
     const {comments} = offerAdapterItem.content;
@@ -18,7 +18,7 @@ class OfferCommentAdapter {
 
   addItem(offerId, comment) {
     const offerAdapterItem = OfferAdapter.getItemById(offerId);
-    if (offerAdapterItem.status === STATUS_LIST.FAILED) {
+    if (offerAdapterItem.status === StatusList.FAILED) {
       return offerAdapterItem;
     }
     if (comment.text.trim() === ``) {
@@ -35,7 +35,7 @@ class OfferCommentAdapter {
 
   deleteItemById(offerId, commentId) {
     const offerAdapterItem = OfferAdapter.getItemById(offerId);
-    if (offerAdapterItem.status === STATUS_LIST.FAILED) {
+    if (offerAdapterItem.status === StatusList.FAILED) {
       return HttpResponse.badRequest(offerAdapterItem.content);
     }
     const {comments} = offerAdapterItem.content;

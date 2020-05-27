@@ -1,0 +1,33 @@
+extends ../../layout
+
+block content
+  main.page-content
+    section.comments
+      .comments__wrapper
+        h1.visually-hidden Страница комментариев
+
+        each offer in offerList
+          .comments__block
+            .comments__header
+              a.announce-card(href='#')
+                h2.announce-card__title= offer.title
+                span.announce-card__info
+                  span.announce-card__price= `₽ ${offer.sum}`
+                  if offer.type === `buy`
+                    span.announce-card__type Куплю
+                  if offer.type === `sell`
+                    span.announce-card__type Продам
+            ul.comments-list
+              each comment in offer.comments
+                li.js-card
+                  .comment-card
+                    if comment.user
+                      .comment-card__header
+                        a.comment-card__avatar.avatar(href='#')
+                          img(
+                            src=`img/avatars/${comment.user.avatar}`
+                            alt='Аватар пользователя')
+                        p.comment-card__author= comment.user.name
+                    .comment-card__content
+                      p= comment.text
+                    button.comment-card__delete.js-delete(type='button') Удалить

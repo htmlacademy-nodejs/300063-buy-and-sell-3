@@ -9,7 +9,7 @@ const {ExitCode} = require(`../../constants`);
 const {getRandomInt, shuffle, readContent} = require(`../../utils`);
 const params = require(`./params`);
 
-const getPictureFileName = (number) => number > params.MAX_NUMBER_WITH_ZERO ? `item${number}.jpg` : `item0${number}.jpg`;
+const getPictureFileName = (number) => `item${number.toString().padStart(2, 0)}.jpg`;
 
 const getComments = (textComments) => {
   const emptyList = Array(getRandomInt(0, 5)).fill({});

@@ -2,8 +2,8 @@ extends layout
 
 block content
   include common/category
-  - let params= newTicketListParams
+  - let ticketListParams= newTicketListParams
   include common/ticket-list
-  - params= popularTicketListParams
+  - ticketListParams= popularTicketListParams
   include common/ticket-list
 

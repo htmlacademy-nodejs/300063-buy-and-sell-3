@@ -3,10 +3,12 @@
 const {Router} = require(`express`);
 
 const commentsRouter = require(`./comments`);
+const {getMyPage} = require(`./methods`);
+
 
 const myRouter = new Router();
 
+myRouter.get(`/`, getMyPage);
 myRouter.use(`/comments`, commentsRouter);
-myRouter.get(`/`, (req, res) => res.render(`my/my`));
 
 module.exports = myRouter;

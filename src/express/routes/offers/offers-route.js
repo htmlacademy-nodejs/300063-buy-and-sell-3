@@ -2,9 +2,10 @@
 
 const {Router} = require(`express`);
 
-const addRouter = require(`./add/add-routes`);
+const addRouter = require(`./add`);
 const categoryRouter = require(`./category`);
 const editRouter = require(`./edit`);
+const {getOfferPageById} = require(`./methods`);
 
 
 const offersRouter = new Router();
@@ -14,8 +15,6 @@ offersRouter.use(`/category`, categoryRouter);
 offersRouter.use(`/edit`, editRouter);
 
 
-offersRouter.get(`/:id`, (req, res) => res.render(`offers/id`, {
-  isAuthorized: false,
-}));
+offersRouter.get(`/:id`, getOfferPageById);
 
 module.exports = offersRouter;

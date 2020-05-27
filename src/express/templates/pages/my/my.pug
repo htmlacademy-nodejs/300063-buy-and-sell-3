@@ -1,0 +1,12 @@
+extends ../../layout
+
+block content
+  main.page-content
+    section.tickets-list
+      h2.visually-hidden Самые новые предложения
+      .tickets-list__wrapper
+        .tickets-list__header
+          a.tickets-list__btn.btn.btn--big(href='#')
+            span Новая публикация
+
+        include ../../common/ticket-list

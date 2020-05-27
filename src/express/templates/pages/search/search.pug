@@ -1,0 +1,37 @@
+extends ../../layout
+
+block content
+  main.page-content
+    section.search-results
+      h1.visually-hidden Результаты поиска
+      .search-results__wrapper
+        if offerList.length === 0
+          .search-results__message
+            p Не найдено
+            p ни&nbsp;одной публикации
+        else
+          p.search-results__label= searchTitle
+        ul.search-results__list
+          each offer in offerList
+            li.search-results__item
+              .ticket-card.ticket-card--color05
+                .ticket-card__img
+                  img(src=offer.picture.base alt='Изображение товара')
+                .ticket-card__info
+                  if offer.type === `buy`
+                    span.ticket-card__label КУПЛЮ
+                  if offer.type === `sell`
+                    span.ticket-card__label ПРОДАМ
+                  .ticket-card__categories
+                    each category in offer.categoryList
+                      a(href='#')= category
+                  .ticket-card__header
+                    h3.ticket-card__title
+                      a(href='#')= offer.title
+                    p.ticket-card__price
+                      span.js-sum #{offer.sum} ₽
+                  .ticket-card__desc
+                    p= offer.description
+
+    include ../../common/ticket-list
+

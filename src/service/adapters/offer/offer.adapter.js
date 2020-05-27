@@ -3,20 +3,20 @@
 const fs = require(`fs`);
 const {nanoid} = require(`nanoid`);
 
-const {HttpResponse, STATUS_LIST} = require(`../http-response`);
+const {HttpResponse, StatusList} = require(`../../../common`);
 const {FILENAME, validationParams} = require(`../../common`);
-const {LoggerCenter, validationPropertyList} = require(`../../utils`);
+const {logger, validationPropertyList} = require(`../../utils`);
 
 
-const logger = LoggerCenter.getLogger();
+const log = logger.getLogger();
 
 class OfferAdapter {
   constructor() {
     try {
       this._list = JSON.parse(fs.readFileSync(FILENAME, `utf8`));
-      logger.debug(`Offer adapter init`);
+      log.debug(`Offer adapter init`);
     } catch (error) {
-      logger.error(`Can't read file ${FILENAME} ${error}`);
+      log.error(`Can't read file ${FILENAME} ${error}`);
     }
   }
 
@@ -29,7 +29,7 @@ class OfferAdapter {
 
   addItem(offerParams) {
     const validation = validationPropertyList(validationParams.requiredOfferPropertyList, offerParams);
-    if (validation.status === STATUS_LIST.FAILED) {
+    if (validation.status === StatusList.FAILED) {
       return HttpResponse.badRequest(validation.content);
     }
     const newOffer = {
@@ -45,7 +45,6 @@ class OfferAdapter {
     if (offerId === ``) {
       return HttpResponse.badRequest(`Offer id can't be empty`);
     }
-
     const currentOffer = this._list.find((offer) => offer.id === offerId);
     if (currentOffer === undefined) {
       return HttpResponse.notFound(`Offer with ${offerId} id doesn't exist`);
@@ -55,7 +54,7 @@ class OfferAdapter {
 
   updateItemById(offerId, offerParams) {
     const validation = validationPropertyList(validationParams.requiredOfferPropertyList, offerParams);
-    if (validation.status === STATUS_LIST.FAILED) {
+    if (validation.status === StatusList.FAILED) {
       return HttpResponse.badRequest(validation.content);
     }
     const offerIndex = this._list.findIndex((offer) => offer.id === offerId);
