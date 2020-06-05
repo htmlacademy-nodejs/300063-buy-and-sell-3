@@ -53,7 +53,7 @@ CREATE TABLE public.accounts (
     email character varying(100),
     avatar character varying(100),
     password character(128),
-    date date
+    date timestamp without time zone
 );
 
 
@@ -114,7 +114,7 @@ CREATE TABLE public.comments (
     account_id bigint NOT NULL,
     offer_id bigint NOT NULL,
     text text,
-    date date
+    date timestamp without time zone
 );
 
 
@@ -149,7 +149,7 @@ CREATE TABLE public.offers (
     description character varying(1000),
     sum money,
     picture character varying(100),
-    date date
+    date timestamp without time zone
 );
 
 
